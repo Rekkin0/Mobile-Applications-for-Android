@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">LabOneApp</string>
+
+    <!-- MAIN ACTIVITY -->
+    <string name="textName_main">Name</string>
+    <string name="textNickname_main">Nickname</string>
+
+    <string name="imageDescriptionAvatar_main">A picture of a dog</string>
+
+    <string name="buttonActivity1_main">1</string>
+    <string name="buttonActivity2_main">2</string>
+    <string name="buttonActivity3_main">3</string>
+
+    <!-- FIRST ACTIVITY -->
+    <string name="hintEditPhone_first">Enter your phone number</string>
+
+    <string name="buttonDial_first">Dial</string>
+    <string name="buttonSms_first">SMS</string>
+
+    <string name="radio1_first">Will call back soon</string>
+    <string name="radio2_first">Can\'t talk right now</string>
+    <string name="radio3_first">On my way home</string>
+    <string name="radio4_first">Leave a voicemail</string>
+    <string name="radio5_first">Message below:</string>
+
+    <string name="hintMessage_first">Type your message</string>
+
+    <!-- SECOND ACTIVITY -->
+    <string name="labelName_second">Name</string>
+    <string name="hintEditName_second">Enter your real name</string>
+
+    <string name="labelEmail_second">E-mail</string>
+    <string name="hintEditEmail_second">Enter your e-mail address</string>
+
+    <string name="labelPhone_second">Phone</string>
+    <string name="hindEditPhone_second">Enter your phone number</string>
+
+    <string name="labelNickname_second">Nickname</string>
+    <string name="hintEditNickname_second">Enter your desired nickname</string>
+
+    <string name="buttonBack_second">Back</string>
+
+    <!-- THIRD ACTIVITY -->
+    <string name="imageDescriptionMale_third">Male sex</string>
+    <string name="imageDescriptionFemale_third">Female sex</string>
+
+    <string name="imageDescriptionAvatar_third">A picture of a dog</string>
+
+    <string name="buttonBack_third">Back</string>
+</resources>
