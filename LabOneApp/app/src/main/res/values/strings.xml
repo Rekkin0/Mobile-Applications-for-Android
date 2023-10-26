@@ -27,16 +27,16 @@
 
     <!-- SECOND ACTIVITY -->
     <string name="labelName_second">Name</string>
-    <string name="hintEditName_second">Enter your real name</string>
+    <string name="textEditName_second">abc xyz</string>
 
     <string name="labelEmail_second">E-mail</string>
-    <string name="hintEditEmail_second">Enter your e-mail address</string>
+    <string name="textEditEmail_second">abc@xyz.pl</string>
 
     <string name="labelPhone_second">Phone</string>
-    <string name="hindEditPhone_second">Enter your phone number</string>
+    <string name="textEditPhone_second">71-32-45-09</string>
 
     <string name="labelNickname_second">Nickname</string>
-    <string name="hintEditNickname_second">Enter your desired nickname</string>
+    <string name="textEditNickname_second">abc</string>
 
     <string name="buttonBack_second">Back</string>
 

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 
 class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +22,20 @@ class FirstActivity : AppCompatActivity() {
             runDial(phoneNumber)
         }
 
-        val editMessage: EditText = findViewById(R.id.editMessage)
+        val radioGroup: RadioGroup = findViewById(R.id.radioGroup)
         val buttonSms: Button = findViewById(R.id.buttonSms)
         buttonSms.setOnClickListener { _ ->
             val phoneNumber = editPhone.text.toString()
-            val message = editMessage.text.toString()
-            runSms(phoneNumber, message)
+            val message = { buttonId: Int ->
+                when (buttonId) {
+                    -1 -> ""
+                    R.id.radioButton5 ->
+                        findViewById<EditText>(R.id.editMessage).text.toString()
+                    else -> findViewById<RadioButton>(buttonId).text.toString()
+                }
+            }
+            runSms(phoneNumber, message(radioGroup.checkedRadioButtonId))
         }
-
     }
 
     private fun runDial(phoneNumber: String) {

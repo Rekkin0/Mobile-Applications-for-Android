@@ -30,10 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
+            android:ems="6"
             android:inputType="text"
             android:autofillHints="name"
-            android:hint="@string/hintEditName_second" />
+            android:text="@string/textEditName_second" />
     </LinearLayout>
 
     <Space
@@ -59,10 +59,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
+            android:ems="6"
             android:inputType="textEmailAddress"
             android:autofillHints="emailAddress"
-            android:hint="@string/hintEditEmail_second" />
+            android:text="@string/textEditEmail_second" />
 
     </LinearLayout>
 
@@ -89,10 +89,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
+            android:ems="6"
             android:inputType="phone"
             android:autofillHints="phone"
-            android:hint="@string/hindEditPhone_second" />
+            android:text="@string/textEditPhone_second" />
 
     </LinearLayout>
 
@@ -119,10 +119,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
+            android:ems="6"
             android:inputType="text"
             android:importantForAutofill="no"
-            android:hint="@string/hintEditNickname_second" />
+            android:text="@string/textEditNickname_second" />
     </LinearLayout>
 
     <Space
