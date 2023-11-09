@@ -5,16 +5,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <item
+            android:id="@+id/itemFontStyleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="@string/bold" />
+            android:title="@string/bold"
+            android:checkable="true" />
         <item
+            android:id="@+id/itemFontStyleItalic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="@string/italic" />
-        <item
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:title="@string/underlined" />
+            android:title="@string/italic"
+            android:checkable="true" />
     </group>
 </menu>

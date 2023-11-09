@@ -29,52 +29,45 @@ tools:context=".LeftActivity">
         android:id="@+id/buttonFontSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="200dp"
         android:text="@string/textFontSize"
+        android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/buttonFontType"
+        android:id="@+id/buttonFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/textFontType"
+        android:layout_marginTop="100dp"
+        android:text="@string/textFontStyle"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/buttonFontSize"
         app:layout_constraintStart_toStartOf="@+id/buttonFontSize"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontSize" />
 
-
+    <!--
     <Button
         android:id="@+id/buttonTheme3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/textTheme3"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFontType"
-        app:layout_constraintStart_toStartOf="@+id/buttonFontType"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFontType" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonFontStyle"
+        app:layout_constraintStart_toStartOf="@+id/buttonFontStyle"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle" />
+    -->
 
     <Button
-        android:id="@+id/buttonLeft"
+        android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
         android:layout_marginBottom="90dp"
-        android:text="@string/buttonLeft"
+        android:text="@string/buttonBack"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFontType" />
-
-    <Button
-        android:id="@+id/buttonRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="90dp"
-        android:text="@string/buttonRight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/buttonFontType" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle"
+        app:layout_constraintStart_toStartOf="@+id/buttonFontStyle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
