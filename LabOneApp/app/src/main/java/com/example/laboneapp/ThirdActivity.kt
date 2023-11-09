@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
+import android.widget.SeekBar
 import androidx.activity.OnBackPressedCallback
 
 class ThirdActivity : AppCompatActivity() {
@@ -38,9 +39,14 @@ class ThirdActivity : AppCompatActivity() {
 
     private fun sendDataBack() {
         val rating = findViewById<RatingBar>(R.id.ratingBar).rating
+        val progress = findViewById<SeekBar>(R.id.seekBar).progress
+
+        val bundle = Bundle()
+        bundle.putFloat("rating", rating)
+        bundle.putInt("progress", progress)
 
         val myIntent = Intent()
-        myIntent.putExtra("rating", rating)
+        myIntent.putExtras(bundle)
 
         setResult(RESULT_OK, myIntent)
         finish()

@@ -16,10 +16,10 @@ class SecondActivity : AppCompatActivity() {
         fun setDefault(extraName: String, editText: EditText) {
             editText.setText(intent.getStringExtra(extraName))
         }
-//        setDefault("name", findViewById(R.id.editName))
-//        setDefault("email", findViewById(R.id.editEmail))
-//        setDefault("phone", findViewById(R.id.editPhone))
-//        setDefault("nickname", findViewById(R.id.editNickname))
+        setDefault("name", findViewById(R.id.editName))
+        setDefault("email", findViewById(R.id.editEmail))
+        setDefault("phone", findViewById(R.id.editPhone))
+        setDefault("nickname", findViewById(R.id.editNickname))
 
         onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {

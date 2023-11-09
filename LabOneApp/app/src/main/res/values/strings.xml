@@ -2,8 +2,10 @@
     <string name="app_name">LabOneApp</string>
 
     <!-- MAIN ACTIVITY -->
-    <string name="textName_main">Name</string>
-    <string name="textNickname_main">Nickname</string>
+    <string name="textName_main">Korzeń</string>
+    <string name="textNickname_main">piesek</string>
+    <string name="textRating_main">0.0</string>
+    <string name="textProgress_main">0</string>
 
     <string name="imageDescriptionAvatar_main">A picture of a dog</string>
 
@@ -23,20 +25,23 @@
     <string name="radio4_first">Leave a voicemail</string>
     <string name="radio5_first">Message below:</string>
 
-    <string name="hintMessage_first">Type your message</string>
+    <string name="hintEditMessage_first">Type your message</string>
+
+    <string name="buttonLocation_first">Geolocation</string>
+    <string name="hintEditLocation_first">Enter desired location</string>
 
     <!-- SECOND ACTIVITY -->
     <string name="labelName_second">Name</string>
-    <string name="textEditName_second">abc xyz</string>
+    <string name="textEditName_second">Korzeń</string>
 
     <string name="labelEmail_second">E-mail</string>
-    <string name="textEditEmail_second">abc@xyz.pl</string>
+    <string name="textEditEmail_second">korzen@xyz.pl</string>
 
     <string name="labelPhone_second">Phone</string>
     <string name="textEditPhone_second">71-32-45-09</string>
 
     <string name="labelNickname_second">Nickname</string>
-    <string name="textEditNickname_second">abc</string>
+    <string name="textEditNickname_second">piesek</string>
 
     <string name="buttonBack_second">Back</string>
 

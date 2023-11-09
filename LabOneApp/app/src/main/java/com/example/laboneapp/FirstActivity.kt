@@ -36,6 +36,13 @@ class FirstActivity : AppCompatActivity() {
             }
             runSms(phoneNumber, message(radioGroup.checkedRadioButtonId))
         }
+
+        val editLocation: EditText = findViewById(R.id.editLocation)
+        val buttonLocation: Button = findViewById(R.id.buttonLocation)
+        buttonLocation.setOnClickListener { _ ->
+            val location = editLocation.text.toString()
+            runLocation(location)
+        }
     }
 
     private fun runDial(phoneNumber: String) {
@@ -55,5 +62,12 @@ class FirstActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         }
+    }
+
+    private fun runLocation(location: String) {
+        val url = "https://www.google.com/maps/search/"
+        //val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url+location))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=$location"))
+        startActivity(intent)
     }
 }

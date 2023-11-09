@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">LabTwoApp</string>
+
+    <string name="textThemeDefault">Default theme</string>
+    <string name="textTheme1">Theme 1</string>
+    <string name="textTheme2">Theme 2</string>
+    <string name="textTheme3">Theme 3</string>
+
+    <string name="buttonLeft">Left</string>
+    <string name="buttonRight">Right</string>
+
+    <string name="textFontSize">Font size</string>
+    <string name="text20">20</string>
+    <string name="text22">22</string>
+    <string name="text24">24</string>
+
+    <string name="textFontType">Font type</string>
+    <string name="bold">Bold</string>
+    <string name="italic">Italic</string>
+    <string name="underlined">Underlined</string>
+</resources>
