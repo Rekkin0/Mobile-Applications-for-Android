@@ -21,9 +21,9 @@
     <color name="theme1_errorContainer">#FFDAD6</color>
     <color name="theme1_onError">#FFFFFF</color>
     <color name="theme1_onErrorContainer">#410002</color>
-    <color name="theme1_background">#FFFBFF</color>
+    <color name="theme1_background">#F6E0BB</color>
     <color name="theme1_onBackground">#1E1B16</color>
-    <color name="theme1_surface">#FFFBFF</color>
+    <color name="theme1_surface">#F6E0BB</color>
     <color name="theme1_onSurface">#1E1B16</color>
     <color name="theme1_surfaceVariant">#EEE1CF</color>
     <color name="theme1_onSurfaceVariant">#4E4639</color>
@@ -37,7 +37,7 @@
     <color name="theme1_scrim">#000000</color>
 
     <!-- THEME 2 (ORCHID) -->
-    <color name="seed">#C238B2</color>
+    <color name="theme2_seed">#C238B2</color>
     <color name="theme2_primary">#A71A9A</color>
     <color name="theme2_onPrimary">#FFFFFF</color>
     <color name="theme2_primaryContainer">#FFD7F2</color>

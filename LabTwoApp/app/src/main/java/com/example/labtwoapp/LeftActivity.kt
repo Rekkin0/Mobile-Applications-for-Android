@@ -15,6 +15,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.view.menu.MenuBuilder
 
 class LeftActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -49,6 +50,11 @@ class LeftActivity : AppCompatActivity() {
         isBoldChecked = sharedPreferences.getBoolean("is_bold_checked", false)
         isItalicChecked = sharedPreferences.getBoolean("is_italic_checked", false)
         setTextProperties()
+    }
+
+    override fun onRestart() {
+        recreate()
+        super.onRestart()
     }
 
     override fun onCreateContextMenu(
@@ -121,8 +127,11 @@ class LeftActivity : AppCompatActivity() {
             buttonFontStyle.setTypeface(null, NORMAL)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        if (menu is MenuBuilder)
+            menu.setOptionalIconsVisible(true)
         return true
     }
 

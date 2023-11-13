@@ -1,5 +1,6 @@
 package com.example.labtwoapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,6 +9,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -52,8 +55,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onRestart() {
+        recreate()
+        super.onRestart()
+    }
+
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        if (menu is MenuBuilder)
+            menu.setOptionalIconsVisible(true)
         return true
     }
 

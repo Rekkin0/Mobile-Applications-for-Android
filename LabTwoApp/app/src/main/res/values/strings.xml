@@ -19,4 +19,12 @@
     <string name="italic">Italic</string>
 
     <string name="buttonBack">Back</string>
+
+    <string name="textColor1">Gold</string>
+    <string name="textColor2">Orchid</string>
+    <string name="textColor3">Red</string>
+
+    <string name="textPersonalInfo">Personal info</string>
+    <string name="textPreferredColor">Preferred color</string>
+    <string name="textColor">Color</string>
 </resources>
