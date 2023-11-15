@@ -1,30 +1,32 @@
 <resources>
     <string name="app_name">LabTwoApp</string>
 
-    <string name="textThemeDefault">Default Theme</string>
-    <string name="textTheme1">Theme 1</string>
-    <string name="textTheme2">Theme 2</string>
-    <string name="textTheme3">Theme 3</string>
+    <string name="left">Left</string>
+    <string name="main">Main</string>
+    <string name="right">Right</string>
+    <string name="back">Back</string>
 
-    <string name="buttonLeft">Left</string>
-    <string name="buttonRight">Right</string>
+    <string name="default_theme">Default Theme</string>
+    <string name="theme_1">Theme 1</string>
+    <string name="theme_2">Theme 2</string>
+    <string name="theme_3">Theme 3</string>
 
-    <string name="textFontSize">Font Size</string>
+    <string name="font_size">Font Size</string>
     <string name="text20">20</string>
     <string name="text22">22</string>
     <string name="text24">24</string>
 
-    <string name="textFontStyle">Font Style</string>
+    <string name="font_style">Font Style</string>
     <string name="bold">Bold</string>
     <string name="italic">Italic</string>
 
-    <string name="buttonBack">Back</string>
+    <string name="color_gold">Gold</string>
+    <string name="color_orchid">Orchid</string>
+    <string name="color_red">Red</string>
 
-    <string name="textColor1">Gold</string>
-    <string name="textColor2">Orchid</string>
-    <string name="textColor3">Red</string>
-
-    <string name="textPersonalInfo">Personal info</string>
-    <string name="textPreferredColor">Preferred color</string>
-    <string name="textColor">Color</string>
+    <string name="personal_info">Personal info</string>
+    <string name="preferred_color">Preferred color</string>
+    <string name="color">Color</string>
+    <string name="birth_date">Birth date</string>
+    <string name="date_hint">dd-mm-yyyy</string>
 </resources>

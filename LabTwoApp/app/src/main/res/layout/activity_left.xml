@@ -10,11 +10,10 @@ tools:context=".LeftActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -30,7 +29,7 @@ tools:context=".LeftActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:text="@string/textFontSize"
+        android:text="@string/font_size"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,33 +40,31 @@ tools:context=".LeftActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/textFontStyle"
+        android:text="@string/font_style"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/buttonFontSize"
         app:layout_constraintStart_toStartOf="@+id/buttonFontSize"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontSize" />
 
-    <!--
-    <Button
-        android:id="@+id/buttonTheme3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/textTheme3"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFontStyle"
-        app:layout_constraintStart_toStartOf="@+id/buttonFontStyle"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle" />
-    -->
-
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
-        android:text="@string/buttonBack"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="60dp"
+        android:text="@string/back"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle"
         app:layout_constraintStart_toStartOf="@+id/buttonFontStyle" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchorGravity="bottom|center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

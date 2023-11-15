@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_grey">#FFD3D3D3</color>
+    <color name="light_blue">#FFADD8E6</color>
 
     <!-- THEME 1 (GOLD) -->
     <color name="theme1_seed">#FFBB00</color>

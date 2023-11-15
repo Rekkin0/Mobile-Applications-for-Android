@@ -1,11 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.LabTwoApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.LabTwoApp" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
-    <style name="Theme1.LabTwoApp" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme1.LabTwoApp" parent="Base.Theme.LabTwoApp">
         <item name="colorPrimary">@color/theme1_primary</item>
         <item name="colorOnPrimary">@color/theme1_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme1_primaryContainer</item>
@@ -34,7 +35,7 @@
         <item name="colorPrimaryInverse">@color/theme1_inversePrimary</item>
     </style>
 
-    <style name="Theme2.LabTwoApp" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme2.LabTwoApp" parent="Base.Theme.LabTwoApp">
         <item name="colorPrimary">@color/theme2_primary</item>
         <item name="colorOnPrimary">@color/theme2_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme2_primaryContainer</item>
@@ -63,7 +64,7 @@
         <item name="colorPrimaryInverse">@color/theme2_inversePrimary</item>
     </style>
 
-    <style name="Theme3.LabTwoApp" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Theme3.LabTwoApp" parent="Base.Theme.LabTwoApp">
         <item name="colorPrimary">@color/theme3_primary</item>
         <item name="colorOnPrimary">@color/theme3_onPrimary</item>
         <item name="colorPrimaryContainer">@color/theme3_primaryContainer</item>
@@ -91,6 +92,4 @@
         <item name="colorSurfaceInverse">@color/theme3_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/theme3_inversePrimary</item>
     </style>
-
-    <style name="Theme.LabTwoApp" parent="Base.Theme.LabTwoApp" />
 </resources>

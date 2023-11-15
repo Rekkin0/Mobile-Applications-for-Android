@@ -6,21 +6,21 @@
         android:id="@+id/itemColor1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textColor1"
+        android:title="@string/color_gold"
         android:icon="@drawable/color_gold"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/itemColor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textColor2"
+        android:title="@string/color_orchid"
         android:icon="@drawable/color_orchid"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/itemColor3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textColor3"
+        android:title="@string/color_red"
         android:icon="@drawable/color_red"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

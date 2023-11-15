@@ -2,6 +2,7 @@ package com.example.labtwoapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.util.TypedValue.COMPLEX_UNIT_SP
 import android.graphics.Typeface.NORMAL
@@ -16,9 +17,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.view.menu.MenuBuilder
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LeftActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var buttonFontSize: Button
     private lateinit var buttonFontStyle: Button
     private var fontSize = 20F
@@ -34,6 +37,25 @@ class LeftActivity : AppCompatActivity() {
         setContentView(R.layout.activity_left)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        bottomNavigation.selectedItemId = R.id.itemNavigationLeft
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.itemNavigationLeft -> {
+                    true
+                }
+                R.id.itemNavigationMain -> {
+                    onBackPressedDispatcher.onBackPressed()
+                    true
+                }
+                R.id.itemNavigationRight -> {
+                    startActivity(Intent(this, RightActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
 
         buttonFontSize = findViewById(R.id.buttonFontSize)
         buttonFontStyle = findViewById(R.id.buttonFontStyle)
@@ -54,6 +76,7 @@ class LeftActivity : AppCompatActivity() {
 
     override fun onRestart() {
         recreate()
+        bottomNavigation.selectedItemId = R.id.itemNavigationLeft
         super.onRestart()
     }
 

@@ -6,25 +6,25 @@
         android:id="@+id/itemDefaultTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textThemeDefault"
+        android:title="@string/default_theme"
         android:icon="@drawable/restore_default_theme"
         app:showAsAction="always" />
     <item
         android:id="@+id/itemTheme1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textTheme1"
+        android:title="@string/theme_1"
         android:icon="@drawable/color_gold" />
     <item
         android:id="@+id/itemTheme2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textTheme2"
+        android:title="@string/theme_2"
         android:icon="@drawable/color_orchid" />
     <item
         android:id="@+id/itemTheme3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/textTheme3"
+        android:title="@string/theme_3"
         android:icon="@drawable/color_red" />
 </menu>

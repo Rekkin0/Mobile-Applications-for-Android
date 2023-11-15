@@ -1,21 +1,29 @@
 package com.example.labtwoapp
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ActionMode
+import androidx.appcompat.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.view.menu.MenuBuilder
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Calendar
 
 class RightActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var bottomNavigation: BottomNavigationView
     private var myActionMode: ActionMode? = null
-    //private val textColor: TextView = findViewById(R.id.textColor)
+    private lateinit var textColor: TextView
+    private lateinit var textDate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
@@ -24,16 +32,40 @@ class RightActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_right)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        bottomNavigation.selectedItemId = R.id.itemNavigationRight
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.itemNavigationLeft -> {
+                    startActivity(Intent(this, LeftActivity::class.java))
+                    true
+                }
+                R.id.itemNavigationMain -> {
+                    onBackPressedDispatcher.onBackPressed()
+                    true
+                }
+                R.id.itemNavigationRight -> {
+                    true
+                }
+                else -> false
+            }
+        }
+
+        textColor = findViewById(R.id.textColor)
+        textDate = findViewById(R.id.textDate)
+        setPreferredColor()
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val myActionModeCallback: ActionMode.Callback = object: ActionMode.Callback {
             override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
                 menuInflater.inflate(R.menu.context_actionmenu, menu)
-                return false
+                return true
             }
 
             override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-                return false
+                return true
             }
 
             override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
@@ -43,9 +75,9 @@ class RightActivity : AppCompatActivity() {
                     R.id.itemColor2 -> colorId = 2
                     R.id.itemColor3 -> colorId = 3
                 }
-                //saveColorPreferences(colorId)
-                //setPreferredColor()
-                return false
+                saveColorPreferences(colorId)
+                setPreferredColor()
+                return true
             }
 
             override fun onDestroyActionMode(mode: ActionMode?) {
@@ -53,15 +85,49 @@ class RightActivity : AppCompatActivity() {
             }
         }
 
-        /*textColor.setOnLongClickListener { _ ->
+        textColor.setOnLongClickListener { _ ->
             if (myActionMode != null)
                 return@setOnLongClickListener false
-            myActionMode = startActionMode(myActionModeCallback)
+            myActionMode = startSupportActionMode(myActionModeCallback)
             true
-        }*/
+        }
+
+        textDate.setOnClickListener { _ ->
+            val calendar = Calendar.getInstance()
+            val dateDialog = DatePickerDialog(
+                this, { view, year, monthOfYear, dayOfMonth ->
+                    textDate.text = "${dayOfMonth}-${monthOfYear+1}-${year}"
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            dateDialog.show()
+        }
+
+        var buttonBack: Button = findViewById(R.id.buttonBack)
+        buttonBack.setOnClickListener { _ ->
+            val builder = AlertDialog.Builder(this)
+            builder
+                .setTitle("Going back...")
+                .setMessage("Are you absolutely certain?")
+                .setPositiveButton("Ok") { dialog, which ->
+                    onBackPressedDispatcher.onBackPressed()
+                }.setNegativeButton("Cancel") { dialog, which ->
+                    dialog.cancel()
+                }
+            builder.create()
+            builder.show()
+        }
     }
 
-    /*private fun saveColorPreferences(colorId: Int) {
+    override fun onRestart() {
+        recreate()
+        bottomNavigation.selectedItemId = R.id.itemNavigationRight
+        super.onRestart()
+    }
+
+    private fun saveColorPreferences(colorId: Int) {
         sharedPreferences.edit()
             .putInt("color_selected", colorId)
             .apply()
@@ -69,11 +135,11 @@ class RightActivity : AppCompatActivity() {
 
     private fun setPreferredColor() {
         when (sharedPreferences.getInt("color_selected", 0)) {
-            1 -> textColor.setBackgroundColor(R.color.theme1_seed)
-            2 -> textColor.setBackgroundColor(R.color.theme2_seed)
-            3 -> textColor.setBackgroundColor(R.color.theme3_seed)
+            1 -> textColor.setBackgroundColor(getColor(R.color.theme1_seed))
+            2 -> textColor.setBackgroundColor(getColor(R.color.theme2_seed))
+            3 -> textColor.setBackgroundColor(getColor(R.color.theme3_seed))
         }
-    }*/
+    }
 
     @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

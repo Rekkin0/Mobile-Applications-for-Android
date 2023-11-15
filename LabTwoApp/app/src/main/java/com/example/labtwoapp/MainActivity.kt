@@ -11,9 +11,12 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
@@ -23,6 +26,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        val leftActivityIntent = Intent(this, LeftActivity::class.java)
+        val rightActivityIntent = Intent(this, RightActivity::class.java)
+
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        bottomNavigation.selectedItemId = R.id.itemNavigationMain
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.itemNavigationLeft -> {
+                    startActivity(leftActivityIntent)
+                    true
+                }
+                R.id.itemNavigationMain -> {
+                    true
+                }
+                R.id.itemNavigationRight -> {
+                    startActivity(rightActivityIntent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         val buttonTheme1: Button = findViewById(R.id.buttonTheme1)
         buttonTheme1.setOnClickListener { _ ->
@@ -43,20 +68,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         val buttonLeft: Button = findViewById(R.id.buttonLeft)
-        buttonLeft.setOnClickListener { _ ->
-            val myIntent = Intent(this, LeftActivity::class.java)
-            startActivity(myIntent)
-        }
+        buttonLeft.setOnClickListener { _ -> startActivity(leftActivityIntent) }
 
         val buttonRight: Button = findViewById(R.id.buttonRight)
-        buttonRight.setOnClickListener { _ ->
-            val myIntent = Intent(this, RightActivity::class.java)
-            startActivity(myIntent)
-        }
+        buttonRight.setOnClickListener { _ -> startActivity(rightActivityIntent) }
     }
 
     override fun onRestart() {
         recreate()
+        bottomNavigation.selectedItemId = R.id.itemNavigationMain
         super.onRestart()
     }
 
