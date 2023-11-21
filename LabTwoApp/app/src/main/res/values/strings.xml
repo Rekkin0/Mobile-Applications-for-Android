@@ -6,17 +6,18 @@
     <string name="right">Right</string>
     <string name="back">Back</string>
 
-    <string name="default_theme">Default Theme</string>
+    <string name="default_theme">Default theme</string>
     <string name="theme_1">Theme 1</string>
     <string name="theme_2">Theme 2</string>
     <string name="theme_3">Theme 3</string>
 
-    <string name="font_size">Font Size</string>
-    <string name="text20">20</string>
-    <string name="text22">22</string>
-    <string name="text24">24</string>
+    <string name="font_size">Font size</string>
+    <string name="text16" translatable="false">16</string>
+    <string name="text20" translatable="false">20</string>
+    <string name="text22" translatable="false">22</string>
+    <string name="text24" translatable="false">24</string>
 
-    <string name="font_style">Font Style</string>
+    <string name="font_style">Font style</string>
     <string name="bold">Bold</string>
     <string name="italic">Italic</string>
 
@@ -28,5 +29,15 @@
     <string name="preferred_color">Preferred color</string>
     <string name="color">Color</string>
     <string name="birth_date">Birth date</string>
-    <string name="date_hint">dd-mm-yyyy</string>
+    <string name="date_hint" translatable="false">dd-mm-yyyy</string>
+    <string name="some_text">Some text</string>
+    <string name="other_text">Other text</string>
+    <string name="different_text">Different text</string>
+    <string name="nothing_checked">Nothing checked</string>
+    <string name="cancel">Cancel</string>
+    <string name="going_back">Going back...</string>
+    <string name="absolutely_certain">Are you absolutely certain?</string>
+    <string name="choose_font_size">Choose a font size</string>
+    <string name="choose_font_style">Select font styles</string>
+    <string name="default_font">Default font</string>
 </resources>

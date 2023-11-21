@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LabTwoApp</string>
+    <string name="left">Lewo</string>
+    <string name="main">Główny</string>
+    <string name="right">Prawo</string>
+    <string name="back">Powrót</string>
+    <string name="default_theme">Domyślny motyw</string>
+    <string name="theme_1">Motyw 1</string>
+    <string name="theme_2">Motyw 2</string>
+    <string name="theme_3">Motyw 3</string>
+    <string name="font_size">Rozmiar czcionki</string>
+    <string name="font_style">Styl czcionki</string>
+    <string name="bold">Pogrubiona</string>
+    <string name="italic">Pochylona</string>
+    <string name="color_gold">Złoty</string>
+    <string name="color_orchid">Orchidowy</string>
+    <string name="color_red">Czerowny</string>
+    <string name="personal_info">Informacje osobiste</string>
+    <string name="preferred_color">Preferowany kolor</string>
+    <string name="color">Kolor</string>
+    <string name="birth_date">Data urodzenia</string>
+    <string name="some_text">Jakiś tekst</string>
+    <string name="other_text">Inny tekst</string>
+    <string name="different_text">Różny tekst</string>
+    <string name="nothing_checked">Brak zaznaczenia</string>
+    <string name="cancel">Anuluj</string>
+    <string name="going_back">Wracam...</string>
+    <string name="absolutely_certain">Czy jesteś absolutnie pewien?</string>
+    <string name="choose_font_size">Wybierz rozmiar czcionki</string>
+    <string name="choose_font_style">Wybierz style czcionki</string>
+    <string name="default_font">Domyślna czcionka</string>
+</resources>

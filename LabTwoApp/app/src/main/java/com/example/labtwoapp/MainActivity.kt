@@ -8,11 +8,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import java.util.Stack
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -48,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val viewGroup =
+            ((findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup)!!
+        //setTextPreferences(viewGroup)
 
         val buttonTheme1: Button = findViewById(R.id.buttonTheme1)
         buttonTheme1.setOnClickListener { _ ->
@@ -89,13 +98,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var themeId = 0
+        var themeId = sharedPreferences.getInt("theme_selected", 0)
         when (item.itemId) {
             R.id.itemDefaultTheme -> themeId = 0
             R.id.itemTheme1 -> themeId = 1
             R.id.itemTheme2 -> themeId = 2
             R.id.itemTheme3 -> themeId = 3
-            else -> super.onOptionsItemSelected(item)
+            R.id.itemDefaultFont -> themeId = 4
+            else -> {}
         }
         saveThemePreferences(themeId)
         recreate()
@@ -103,9 +113,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveThemePreferences(themeId: Int) {
-        sharedPreferences.edit()
-            .putInt("theme_selected", themeId)
-            .apply()
+        val editor = sharedPreferences.edit()
+        if (themeId != 4)
+            editor.putInt("theme_selected", themeId)
+        else
+            editor.putFloat("font_size", 0F)
+        editor.apply()
     }
 
     private fun applyTheme() {
@@ -115,5 +128,13 @@ class MainActivity : AppCompatActivity() {
             3 -> setTheme(R.style.Theme3_LabTwoApp)
             else -> setTheme(R.style.Base_Theme_LabTwoApp)
         }
+        when (sharedPreferences.getFloat("font_size", 16F)) {
+            0F -> {}
+            16F -> theme.applyStyle(R.style.FontTheme16, false)
+            20F -> theme.applyStyle(R.style.FontTheme20, false)
+            22F -> theme.applyStyle(R.style.FontTheme22, false)
+            24F -> theme.applyStyle(R.style.FontTheme24, false)
+        }
+
     }
 }

@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="144dp"
             android:text="@string/personal_info"
-            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +52,6 @@
             android:gravity="center"
             android:text="@string/color"
             android:textAlignment="center"
-            android:textSize="20sp"
             android:background="@color/light_grey"
             app:layout_constraintBottom_toBottomOf="@+id/textPreferredColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +74,6 @@
             android:gravity="center"
             android:hint="@string/date_hint"
             android:textAlignment="center"
-            android:textSize="16sp"
             android:background="@color/light_blue"
             app:layout_constraintStart_toStartOf="@+id/textColor"
             app:layout_constraintEnd_toEndOf="@+id/textColor"

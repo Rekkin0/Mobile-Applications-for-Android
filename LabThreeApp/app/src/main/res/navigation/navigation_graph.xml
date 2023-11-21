@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/fragmentCenter">
+
+    <fragment
+        android:id="@+id/fragmentLeft"
+        android:name="com.example.labthreeapp.FragmentLeft"
+        android:label="Fragment Left"
+        tools:layout="@layout/fragment_left" >
+        <action
+            android:id="@+id/action_fragmentLeft_to_fragmentRight"
+            app:destination="@id/fragmentRight"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragmentCenter" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCenter"
+        android:name="com.example.labthreeapp.FragmentCenter"
+        android:label="Fragment Center"
+        tools:layout="@layout/fragment_center" />
+    <fragment
+        android:id="@+id/fragmentRight"
+        android:name="com.example.labthreeapp.FragmentRight"
+        android:label="Fragment Right"
+        tools:layout="@layout/fragment_right" >
+        <action
+            android:id="@+id/action_fragmentRight_to_fragmentLeft"
+            app:destination="@id/fragmentLeft"
+            app:popUpTo="@id/fragmentCenter"
+            app:launchSingleTop="true" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_to_fragmentLeft"
+        app:destination="@id/fragmentLeft"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/fragmentCenter" />
+    <action
+        android:id="@+id/action_global_to_fragmentCenter"
+        app:destination="@id/fragmentCenter"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/fragmentCenter" />
+    <action
+        android:id="@+id/action_global_to_fragmentRight"
+        app:destination="@id/fragmentRight"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/fragmentCenter" />
+
+
+</navigation>

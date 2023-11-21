@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragmentLeft"
+        android:icon="@drawable/navigation_left"
+        android:title="@string/left" />
+    <item
+        android:id="@+id/fragmentCenter"
+        android:icon="@drawable/navigation_center"
+        android:title="@string/center" />
+    <item
+        android:id="@+id/fragmentRight"
+        android:icon="@drawable/navigation_right"
+        android:title="@string/right" />
+</menu>

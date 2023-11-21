@@ -8,7 +8,14 @@
         android:layout_height="wrap_content"
         android:title="@string/default_theme"
         android:icon="@drawable/restore_default_theme"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/itemDefaultFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/default_theme"
+        android:icon="@drawable/restore_default_font"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/itemTheme1"
         android:layout_width="wrap_content"

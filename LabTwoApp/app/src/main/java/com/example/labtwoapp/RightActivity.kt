@@ -6,17 +6,25 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.view.ActionMode
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Calendar
+import java.util.Stack
+
 
 class RightActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -24,6 +32,8 @@ class RightActivity : AppCompatActivity() {
     private var myActionMode: ActionMode? = null
     private lateinit var textColor: TextView
     private lateinit var textDate: TextView
+    private var toastText = ""
+    private lateinit var checkboxView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
@@ -105,15 +115,42 @@ class RightActivity : AppCompatActivity() {
             dateDialog.show()
         }
 
+        val inflater = LayoutInflater.from(this)
+        checkboxView = inflater.inflate(R.layout.dialog_checkboxes, null)
+
+        val checkbox1 = checkboxView.findViewById<CheckBox>(R.id.checkBox1)
+        val checkbox2 = checkboxView.findViewById<CheckBox>(R.id.checkBox2)
+        val checkbox3 = checkboxView.findViewById<CheckBox>(R.id.checkBox3)
+
+        checkbox1.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                toastText += "${checkbox1.text}\n"
+        }
+
+        checkbox2.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                toastText += "${checkbox2.text}\n"
+        }
+
+        checkbox3.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked)
+                toastText += "${checkbox3.text}\n"
+        }
+
         var buttonBack: Button = findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener { _ ->
             val builder = AlertDialog.Builder(this)
+            builder.setView(checkboxView)
             builder
-                .setTitle("Going back...")
-                .setMessage("Are you absolutely certain?")
+                .setTitle(getString(R.string.going_back))
+                .setMessage(getString(R.string.absolutely_certain))
                 .setPositiveButton("Ok") { dialog, which ->
                     onBackPressedDispatcher.onBackPressed()
-                }.setNegativeButton("Cancel") { dialog, which ->
+                    if (toastText == "")
+                        toastText = getString(R.string.nothing_checked)
+                    val toast = Toast.makeText(this, toastText, Toast.LENGTH_SHORT)
+                    toast.show()
+                }.setNegativeButton(getString(R.string.cancel)) { dialog, which ->
                     dialog.cancel()
                 }
             builder.create()
@@ -156,6 +193,7 @@ class RightActivity : AppCompatActivity() {
             R.id.itemTheme1 -> themeId = 1
             R.id.itemTheme2 -> themeId = 2
             R.id.itemTheme3 -> themeId = 3
+            R.id.itemDefaultFont -> themeId = 4
             else -> super.onOptionsItemSelected(item)
         }
         saveThemePreferences(themeId)
@@ -175,6 +213,12 @@ class RightActivity : AppCompatActivity() {
             2 -> setTheme(R.style.Theme2_LabTwoApp)
             3 -> setTheme(R.style.Theme3_LabTwoApp)
             else -> setTheme(R.style.Base_Theme_LabTwoApp)
+        }
+        when (sharedPreferences.getFloat("font_size", 16F)) {
+            16F -> theme.applyStyle(R.style.FontTheme16, false)
+            20F -> theme.applyStyle(R.style.FontTheme20, false)
+            22F -> theme.applyStyle(R.style.FontTheme22, false)
+            24F -> theme.applyStyle(R.style.FontTheme24, false)
         }
     }
 }

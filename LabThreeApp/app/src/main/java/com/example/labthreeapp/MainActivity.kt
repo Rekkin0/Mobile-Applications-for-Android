@@ -2,48 +2,46 @@ package com.example.labthreeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), StaticFragment.OnSelectListener {
-    private lateinit var fragment1: Fragment1
-    private lateinit var fragment2: Fragment2
-    private lateinit var transaction: FragmentTransaction
-
-    private val TAG_FRAGMENT_1 = "Fragment1"
-    private val TAG_FRAGMENT_2 = "Fragment2"
+class MainActivity : AppCompatActivity() {
+    private lateinit var navHostFragment: Fragment
+    private lateinit var navController: NavController
+    private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            fragment1 = Fragment1.newInstance()
-            fragment2 = Fragment2.newInstance()
-
-            transaction = supportFragmentManager.beginTransaction()
-            transaction.add(R.id.frameLayout, fragment1, TAG_FRAGMENT_1)
-            transaction.detach(fragment1)
-            transaction.add(R.id.frameLayout, fragment2, TAG_FRAGMENT_2)
-            transaction.detach(fragment2)
-            transaction.commit()
-        } else {
-            fragment1 = supportFragmentManager.findFragmentByTag(TAG_FRAGMENT_1) as Fragment1
-            fragment2 = supportFragmentManager.findFragmentByTag(TAG_FRAGMENT_2) as Fragment2
-        }
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)!!
+        navController = (navHostFragment as NavHostFragment).navController
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        bottomNavigation.selectedItemId = R.id.fragmentCenter
+/*        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.fragmentLeft -> navController.navigate(R.id.action_global_to_fragmentLeft)
+                R.id.fragmentCenter -> navController.navigate(R.id.action_global_to_fragmentCenter)
+                R.id.fragmentRight -> navController.navigate(R.id.action_global_to_fragmentRight)
+                else -> return@setOnItemSelectedListener false
+            }
+            true
+        }*/
+        val appBarConfig = AppBarConfiguration(setOf(R.id.fragmentLeft,
+            R.id.fragmentCenter, R.id.fragmentRight))
+        setupActionBarWithNavController(navController, appBarConfig)
+        bottomNavigation.setupWithNavController(navController)
     }
 
-    override fun onSelect(option: Int) {
-        transaction = supportFragmentManager.beginTransaction()
-        when (option) {
-            1 -> {
-                transaction.detach(fragment2)
-                transaction.attach(fragment1)
-            }
-            2 -> {
-                transaction.detach(fragment1)
-                transaction.attach(fragment2)
-            }
-        }
-        transaction.commit()
-    }
+/*    override fun onBackPressed() {
+        if (bottomNavigation.selectedItemId == R.id.itemNavigationCenter)
+            super.onBackPressed()
+        else
+            bottomNavigation.selectedItemId = R.id.itemNavigationCenter
+    }*/
 }
