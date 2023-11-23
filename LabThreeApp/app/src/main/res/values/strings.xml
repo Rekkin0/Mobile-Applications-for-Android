@@ -19,4 +19,15 @@
     <string name="center">Center</string>
     <string name="right">Right</string>
 
+    <string name="font_size">Font size</string>
+    <string name="choose_font_size">Choose a font size</string>
+    <string name="text16" translatable="false">16</string>
+    <string name="text20" translatable="false">20</string>
+    <string name="text24" translatable="false">24</string>
+
+    <string name="font_style">Font style</string>
+    <string name="choose_font_style">Select font styles</string>
+    <string name="bold">Bold</string>
+    <string name="italic">Italic</string>
+
 </resources>
