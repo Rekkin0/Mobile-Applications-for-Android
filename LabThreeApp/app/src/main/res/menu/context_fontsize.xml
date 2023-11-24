@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/itemTextSize16"
+        android:id="@+id/itemFontSize16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/text16" />
+        android:title="@string/font_16" />
     <item
-        android:id="@+id/itemTextSize20"
+        android:id="@+id/itemFontSize20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/text20" />
+        android:title="@string/font_20" />
     <item
-        android:id="@+id/itemTextSize24"
+        android:id="@+id/itemFontSize24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="@string/text24" />
+        android:title="@string/font_24" />
 </menu>

@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/fragmentLeft"
         android:name="com.example.labthreeapp.FragmentLeft"
-        android:label="Fragment Left"
-        tools:layout="@layout/fragment_left" >
+        android:label="@string/left_fragment"
+        tools:layout="@layout/fragment_left">
         <action
             android:id="@+id/action_fragmentLeft_to_fragmentRight"
             app:destination="@id/fragmentRight"
@@ -19,18 +19,18 @@
     <fragment
         android:id="@+id/fragmentCenter"
         android:name="com.example.labthreeapp.FragmentCenter"
-        android:label="Fragment Center"
+        android:label="@string/center_fragment"
         tools:layout="@layout/fragment_center" />
     <fragment
         android:id="@+id/fragmentRight"
         android:name="com.example.labthreeapp.FragmentRight"
-        android:label="Fragment Right"
-        tools:layout="@layout/fragment_right" >
+        android:label="@string/right_fragment"
+        tools:layout="@layout/fragment_right">
         <action
             android:id="@+id/action_fragmentRight_to_fragmentLeft"
             app:destination="@id/fragmentLeft"
-            app:popUpTo="@id/fragmentCenter"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:popUpTo="@id/fragmentCenter" />
     </fragment>
 
     <action

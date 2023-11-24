@@ -105,7 +105,7 @@ class RightActivity : AppCompatActivity() {
         textDate.setOnClickListener { _ ->
             val calendar = Calendar.getInstance()
             val dateDialog = DatePickerDialog(
-                this, { view, year, monthOfYear, dayOfMonth ->
+                this, { _, year, monthOfYear, dayOfMonth ->
                     textDate.text = "${dayOfMonth}-${monthOfYear+1}-${year}"
                 },
                 calendar.get(Calendar.YEAR),
@@ -122,35 +122,35 @@ class RightActivity : AppCompatActivity() {
         val checkbox2 = checkboxView.findViewById<CheckBox>(R.id.checkBox2)
         val checkbox3 = checkboxView.findViewById<CheckBox>(R.id.checkBox3)
 
-        checkbox1.setOnCheckedChangeListener { buttonView, isChecked ->
+        checkbox1.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 toastText += "${checkbox1.text}\n"
         }
 
-        checkbox2.setOnCheckedChangeListener { buttonView, isChecked ->
+        checkbox2.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 toastText += "${checkbox2.text}\n"
         }
 
-        checkbox3.setOnCheckedChangeListener { buttonView, isChecked ->
+        checkbox3.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 toastText += "${checkbox3.text}\n"
         }
 
-        var buttonBack: Button = findViewById(R.id.buttonBack)
+        val buttonBack: Button = findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener { _ ->
             val builder = AlertDialog.Builder(this)
             builder.setView(checkboxView)
             builder
                 .setTitle(getString(R.string.going_back))
                 .setMessage(getString(R.string.absolutely_certain))
-                .setPositiveButton("Ok") { dialog, which ->
+                .setPositiveButton("Ok") { _, _ ->
                     onBackPressedDispatcher.onBackPressed()
                     if (toastText == "")
                         toastText = getString(R.string.nothing_checked)
                     val toast = Toast.makeText(this, toastText, Toast.LENGTH_SHORT)
                     toast.show()
-                }.setNegativeButton(getString(R.string.cancel)) { dialog, which ->
+                }.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                     dialog.cancel()
                 }
             builder.create()

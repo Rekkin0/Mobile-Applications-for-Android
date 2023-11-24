@@ -31,13 +31,13 @@
             android:id="@+id/radioButton1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/option_1" />
+            android:text="@string/rating_bar" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/option_2" />
+            android:text="@string/seek_bar" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

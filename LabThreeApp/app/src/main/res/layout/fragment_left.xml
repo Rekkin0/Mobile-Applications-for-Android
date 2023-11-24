@@ -10,7 +10,7 @@
         android:id="@+id/buttonFontSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="160dp"
         android:text="@string/font_size"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,5 +25,15 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonFontSize"
         app:layout_constraintStart_toStartOf="@+id/buttonFontSize"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontSize" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="@string/back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle"
+        app:layout_constraintStart_toStartOf="@+id/buttonFontStyle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

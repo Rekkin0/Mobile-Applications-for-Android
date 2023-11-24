@@ -1,33 +1,70 @@
 <resources>
     <string name="app_name">LabThreeApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="left_fragment">Left Fragment</string>
+
+
+    <string name="back">Back</string>
+
+    <string name="default_theme">Default theme</string>
+    <string name="theme_1">Theme 1</string>
+    <string name="theme_2">Theme 2</string>
+    <string name="theme_3">Theme 3</string>
+
+    <string name="color_gold">Gold</string>
+    <string name="color_orchid">Orchid</string>
+    <string name="color_red">Red</string>
+
     <string name="main_fragment">Main Fragment</string>
-    <string name="right_fragment">Right Fragment</string>
+
+
+    <string name="center">Center</string>
+    <string name="center_fragment">Center Fragment</string>
 
     <string name="fragment_1">Fragment 1</string>
-    <string name="fragment_2">Fragment 2</string>
+    <string name="rating_bar">Rating bar</string>
+    <string name="rating">Rating from rating bar</string>
 
-    <string name="option_1">Option 1</string>
-    <string name="option_2">Option 2</string>
+    <string name="fragment_2">Fragment 2</string>
+    <string name="seek_bar">Seek bar</string>
+    <string name="progress">Progress from seek bar</string>
 
     <string name="hint_result">Results</string>
-
     <string name="send">Send</string>
 
+
     <string name="left">Left</string>
-    <string name="center">Center</string>
-    <string name="right">Right</string>
+    <string name="left_fragment">Left Fragment</string>
 
     <string name="font_size">Font size</string>
     <string name="choose_font_size">Choose a font size</string>
-    <string name="text16" translatable="false">16</string>
-    <string name="text20" translatable="false">20</string>
-    <string name="text24" translatable="false">24</string>
+    <string name="font_16" translatable="false">16</string>
+    <string name="font_20" translatable="false">20</string>
+    <string name="font_24" translatable="false">24</string>
 
     <string name="font_style">Font style</string>
     <string name="choose_font_style">Select font styles</string>
-    <string name="bold">Bold</string>
-    <string name="italic">Italic</string>
+    <string name="font_bold">Bold</string>
+    <string name="font_italic">Italic</string>
+
+
+    <string name="right">Right</string>
+    <string name="right_fragment">Right Fragment</string>
+
+    <string name="personal_info">Personal info</string>
+
+    <string name="preferred_color">Preferred color</string>
+    <string name="color">Color</string>
+
+    <string name="birth_date">Birth date</string>
+    <string name="date_hint" translatable="false">dd-mm-yyyy</string>
+
+
+    <string name="nothing_checked">Nothing checked</string>
+    <string name="cancel">Cancel</string>
+    <string name="going_back">Going back…</string>
+    <string name="absolutely_certain">Are you absolutely certain?</string>
+
+    <string name="some_text">Some text</string>
+    <string name="other_text">Other text</string>
+    <string name="different_text">Different text</string>
 
 </resources>

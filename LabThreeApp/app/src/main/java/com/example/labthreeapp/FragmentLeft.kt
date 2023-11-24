@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.ContextMenu
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -19,13 +20,10 @@ class FragmentLeft : Fragment() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var buttonFontSize: Button
     private lateinit var buttonFontStyle: Button
-    private var fontSize = 16F
-    private var isBoldChecked = false
-    private var isItalicChecked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         currentActivity = this.requireActivity()
-        sharedPreferences = requireActivity()
+        sharedPreferences = currentActivity
             .getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
         super.onCreate(savedInstanceState)
     }
@@ -34,7 +32,6 @@ class FragmentLeft : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_left, container, false)
     }
 
@@ -43,15 +40,15 @@ class FragmentLeft : Fragment() {
 
         buttonFontSize = currentActivity.findViewById(R.id.buttonFontSize)
         buttonFontStyle = currentActivity.findViewById(R.id.buttonFontStyle)
-        buttonFontStyle.setTypeface(null, sharedPreferences.getInt("font_style", Typeface.NORMAL))
+        buttonFontStyle.setTypeface(null, getFontStyle())
 
         registerForContextMenu(buttonFontSize)
         registerForContextMenu(buttonFontStyle)
 
-        isBoldChecked = sharedPreferences.getBoolean("is_bold_checked", false)
-        isItalicChecked = sharedPreferences.getBoolean("is_italic_checked", false)
-
-        applyTheme()
+        val buttonBack: Button = currentActivity.findViewById(R.id.buttonBack)
+        buttonBack.setOnClickListener { _ ->
+            currentActivity.findNavController(R.id.fragmentContainerView).popBackStack()
+        }
     }
 
     override fun onCreateContextMenu(
@@ -73,8 +70,8 @@ class FragmentLeft : Fragment() {
         val itemFontStyleBold: MenuItem? = menu.findItem(R.id.itemFontStyleBold)
         val itemFontStyleItalic: MenuItem? = menu.findItem(R.id.itemFontStyleItalic)
 
-        itemFontStyleBold?.isChecked = isBoldChecked
-        itemFontStyleItalic?.isChecked = isItalicChecked
+        itemFontStyleBold?.isChecked = sharedPreferences.getBoolean("is_bold_checked", false)
+        itemFontStyleItalic?.isChecked = sharedPreferences.getBoolean("is_italic_checked", false)
 
         itemFontStyleBold?.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
         itemFontStyleItalic?.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW)
@@ -84,55 +81,45 @@ class FragmentLeft : Fragment() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
+        val editor = sharedPreferences.edit()
         when (item.itemId) {
-            R.id.itemTextSize16 -> fontSize = 16F
-            R.id.itemTextSize20 -> fontSize = 20F
-            R.id.itemTextSize24 -> fontSize = 24F
+            R.id.itemFontSize16 -> { editor.putInt("font_size", R.style.FontTheme16); fontSizeChanged() }
+            R.id.itemFontSize20 -> { editor.putInt("font_size", R.style.FontTheme20); fontSizeChanged() }
+            R.id.itemFontSize24 -> { editor.putInt("font_size", R.style.FontTheme24); fontSizeChanged() }
             R.id.itemFontStyleBold -> {
-                isBoldChecked = !item.isChecked
-                item.isChecked = isBoldChecked
+                item.isChecked = !item.isChecked
+                editor.putBoolean("is_bold_checked", item.isChecked)
             }
             R.id.itemFontStyleItalic -> {
-                isItalicChecked = !item.isChecked
-                item.isChecked = isItalicChecked
+                item.isChecked = !item.isChecked
+                editor.putBoolean("is_italic_checked", item.isChecked)
             }
             else -> super.onContextItemSelected(item)
         }
-        saveTextPreferences()
+        editor.apply()
         refreshFragment()
         return false
     }
 
-    private fun saveTextPreferences() {
-        val editor = sharedPreferences.edit()
-        editor
-            .putFloat("font_size", fontSize)
-            .putBoolean("is_bold_checked", isBoldChecked)
-            .putBoolean("is_italic_checked", isItalicChecked)
-        if (isBoldChecked && isItalicChecked)
-            editor.putInt("font_style", Typeface.BOLD_ITALIC)
-        else if (isBoldChecked)
-            editor.putInt("font_style", Typeface.BOLD)
-        else if (isItalicChecked)
-            editor.putInt("font_style", Typeface.ITALIC)
-        else
-            editor.putInt("font_style", Typeface.NORMAL)
-        editor.apply()
+    private fun fontSizeChanged() {
+        sharedPreferences
+            .edit()
+            .putBoolean("reset_font_size", false)
+            .apply()
+        currentActivity.recreate()
     }
 
-    private fun applyTheme() {
-        when (sharedPreferences.getInt("theme_choice", 0)) {
-            1 -> currentActivity.setTheme(R.style.Theme1_LabThreeApp)
-            2 -> currentActivity.setTheme(R.style.Theme2_LabThreeApp)
-            3 -> currentActivity.setTheme(R.style.Theme3_LabThreeApp)
-            else -> currentActivity.setTheme(R.style.Base_Theme_LabThreeApp)
-        }
-        when (sharedPreferences.getFloat("font_size", 16F)) {
-            16F -> currentActivity.theme.applyStyle(R.style.FontTheme16, false)
-            20F -> currentActivity.theme.applyStyle(R.style.FontTheme20, false)
-            24F -> currentActivity.theme.applyStyle(R.style.FontTheme24, false)
-            else -> {}
-        }
+    private fun getFontStyle(): Int {
+        val isBoldChecked = sharedPreferences.getBoolean("is_bold_checked", false)
+        val isItalicChecked = sharedPreferences.getBoolean("is_italic_checked", false)
+        return if (isBoldChecked && isItalicChecked)
+            Typeface.BOLD_ITALIC
+        else if (isBoldChecked)
+            Typeface.BOLD
+        else if (isItalicChecked)
+            Typeface.ITALIC
+        else
+            Typeface.NORMAL
     }
 
     private fun refreshFragment() {

@@ -8,13 +8,13 @@
             android:id="@+id/itemFontStyleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="@string/bold"
+            android:title="@string/font_bold"
             android:checkable="true" />
         <item
             android:id="@+id/itemFontStyleItalic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="@string/italic"
+            android:title="@string/font_italic"
             android:checkable="true" />
     </group>
 </menu>

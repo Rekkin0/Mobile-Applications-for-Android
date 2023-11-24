@@ -1,7 +1,13 @@
 package com.example.labthreeapp
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,13 +17,20 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var navHostFragment: Fragment
     private lateinit var navController: NavController
     private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+        setTheme(getMyTheme())
+        getFontSize()?.let { theme.applyStyle(it, false) }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)!!
         navController = (navHostFragment as NavHostFragment).navController
@@ -36,6 +49,44 @@ class MainActivity : AppCompatActivity() {
             R.id.fragmentCenter, R.id.fragmentRight))
         setupActionBarWithNavController(navController, appBarConfig)
         bottomNavigation.setupWithNavController(navController)
+    }
+
+    @SuppressLint("RestrictedApi")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_toolbar_menu, menu)
+        if (menu is MenuBuilder)
+            menu.setOptionalIconsVisible(true)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val editor = sharedPreferences.edit()
+        if (item.itemId == R.id.itemDefaultFont)
+            editor.putBoolean("reset_font_size", true)
+        else {
+            editor.putInt("theme_choice",
+                when (item.itemId) {
+                    R.id.itemTheme1 -> R.style.Theme1_LabThreeApp
+                    R.id.itemTheme2 -> R.style.Theme2_LabThreeApp
+                    R.id.itemTheme3 -> R.style.Theme3_LabThreeApp
+                    else -> R.style.Base_Theme_LabThreeApp
+                }
+            )
+        }
+        editor.apply()
+        recreate()
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun getMyTheme(): Int {
+        return sharedPreferences.getInt("theme_choice", R.style.Base_Theme_LabThreeApp)
+    }
+
+    private fun getFontSize(): Int? {
+        return if (sharedPreferences.getBoolean("reset_font_size", true))
+            null
+        else
+            sharedPreferences.getInt("font_size", R.style.FontTheme16)
     }
 
 /*    override fun onBackPressed() {
