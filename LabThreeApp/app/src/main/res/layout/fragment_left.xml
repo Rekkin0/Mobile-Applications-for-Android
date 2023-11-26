@@ -20,13 +20,34 @@
         android:id="@+id/buttonFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="@string/font_style"
         app:layout_constraintTop_toBottomOf="@+id/buttonFontSize"
         app:layout_constraintStart_toStartOf="@+id/buttonFontSize"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontSize" />
 
+    <TextView
+        android:id="@+id/textExtra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="@string/some_text"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="@+id/buttonFontStyle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFontStyle" />
+
     <Button
+        android:id="@+id/buttonExtra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/extra"
+        app:layout_constraintEnd_toEndOf="@+id/textExtra"
+        app:layout_constraintStart_toStartOf="@+id/textExtra"
+        app:layout_constraintTop_toBottomOf="@+id/textExtra" />
+
+   <!-- <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,5 +56,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonFontStyle"
         app:layout_constraintStart_toStartOf="@+id/buttonFontStyle" />
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>

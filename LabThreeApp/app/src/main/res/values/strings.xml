@@ -67,4 +67,8 @@
     <string name="other_text">Other text</string>
     <string name="different_text">Different text</string>
 
+    <string name="text_hint">Enter some text</string>
+    <string name="extra">Extra</string>
+
+
 </resources>

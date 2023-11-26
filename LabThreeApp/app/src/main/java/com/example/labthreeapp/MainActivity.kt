@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -61,7 +63,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val editor = sharedPreferences.edit()
-        if (item.itemId == R.id.itemDefaultFont)
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        else if (item.itemId == R.id.itemDefaultFont)
             editor.putBoolean("reset_font_size", true)
         else {
             editor.putInt("theme_choice",
@@ -87,6 +93,15 @@ class MainActivity : AppCompatActivity() {
             null
         else
             sharedPreferences.getInt("font_size", R.style.FontTheme16)
+    }
+
+    override fun onBackPressed() {
+        val extraText = findViewById<EditText>(R.id.editText).text
+        sharedPreferences
+            .edit()
+            .putString("extra_text", extraText.toString())
+            .apply()
+        super.onBackPressed()
     }
 
 /*    override fun onBackPressed() {

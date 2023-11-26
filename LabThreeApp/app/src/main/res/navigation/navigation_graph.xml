@@ -11,10 +11,14 @@
         android:label="@string/left_fragment"
         tools:layout="@layout/fragment_left">
         <action
-            android:id="@+id/action_fragmentLeft_to_fragmentRight"
-            app:destination="@id/fragmentRight"
+            android:id="@+id/action_fragmentLeft_to_fragmentExtra"
+            app:destination="@id/fragmentExtra"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:launchSingleTop="true"
-            app:popUpTo="@id/fragmentCenter" />
+            app:popUpTo="@id/fragmentRight" />
     </fragment>
     <fragment
         android:id="@+id/fragmentCenter"
@@ -25,13 +29,7 @@
         android:id="@+id/fragmentRight"
         android:name="com.example.labthreeapp.FragmentRight"
         android:label="@string/right_fragment"
-        tools:layout="@layout/fragment_right">
-        <action
-            android:id="@+id/action_fragmentRight_to_fragmentLeft"
-            app:destination="@id/fragmentLeft"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/fragmentCenter" />
-    </fragment>
+        tools:layout="@layout/fragment_right"/>
 
     <action
         android:id="@+id/action_global_to_fragmentLeft"
@@ -48,6 +46,11 @@
         app:destination="@id/fragmentRight"
         app:launchSingleTop="true"
         app:popUpTo="@id/fragmentCenter" />
+    <fragment
+        android:id="@+id/fragmentExtra"
+        android:name="com.example.labthreeapp.FragmentExtra"
+        android:label="Extra Fragment"
+        tools:layout="@layout/fragment_extra" />
 
 
 </navigation>

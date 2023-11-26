@@ -107,7 +107,7 @@ class FragmentRight : Fragment() {
             dateDialog.show()
         }
 
-        val inflater = LayoutInflater.from(currentActivity)
+/*        val inflater = LayoutInflater.from(currentActivity)
         checkboxView = inflater.inflate(R.layout.dialog_checkboxes, null)
 
         val checkbox1 = checkboxView.findViewById<CheckBox>(R.id.checkBox1)
@@ -145,7 +145,7 @@ class FragmentRight : Fragment() {
                 }
             builder.create()
             builder.show()
-        }
+        }*/
     }
 
     private fun setPreferredColor() {

@@ -5,13 +5,13 @@ import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.ContextMenu
-import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.findNavController
 
@@ -45,10 +45,21 @@ class FragmentLeft : Fragment() {
         registerForContextMenu(buttonFontSize)
         registerForContextMenu(buttonFontStyle)
 
-        val buttonBack: Button = currentActivity.findViewById(R.id.buttonBack)
+        val buttonExtra: Button = currentActivity.findViewById(R.id.buttonExtra)
+        buttonExtra.setOnClickListener { _ ->
+            currentActivity.findNavController(R.id.fragmentContainerView)
+                .navigate(R.id.action_fragmentLeft_to_fragmentExtra)
+        }
+        parentFragmentManager.setFragmentResultListener("textFromFragment", viewLifecycleOwner)
+        { key, bundle ->
+            val result = bundle.getString("extra_text")
+            currentActivity.findViewById<TextView>(R.id.textExtra).text = result
+        }
+
+/*        val buttonBack: Button = currentActivity.findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener { _ ->
             currentActivity.findNavController(R.id.fragmentContainerView).popBackStack()
-        }
+        }*/
     }
 
     override fun onCreateContextMenu(
