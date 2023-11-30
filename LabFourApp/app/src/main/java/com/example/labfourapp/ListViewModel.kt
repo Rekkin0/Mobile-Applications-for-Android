@@ -3,16 +3,39 @@ package com.example.labfourapp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-data class ListItem(val title: String, val description: String)
+data class ListItem(
+    var name: String = "",
+    var title: String = "",
+    var rating: Float = 0.0F,
+    var region: Int? = null,
+)
 
 class ListViewModel : ViewModel() {
-    val listItems = MutableLiveData<List<ListItem>>()
+    val itemList = MutableLiveData<MutableList<ListItem>>()
+    var listSize = 0
+    lateinit var item: ListItem
 
     init {
-        val items = listOf(
-            ListItem("Android", "Mobile OS"),
-            ListItem("Kotlin", "Programming Language")
+        val items: MutableList<ListItem> = mutableListOf(
+            ListItem("Garen", "The Might of Demacia", 1.5F, 2),
+            ListItem("Darius", "The Hand of Noxus", 2.5F, 1),
+            ListItem("Fiora", "The Grand Duelist", 3.5F, 2),
+            ListItem("Azir", "The Emperor of the Sands", 5F, 3),
+            ListItem("Taliyah", "The Stoneweaver", 4.5F, 3),
+            ListItem("Swain", "The Noxian Grand General", 4F, 1),
         )
-        listItems.value = items
+        itemList.value = items
+        listSize = items.size
+        item = items[0]
+    }
+
+    fun addItem(item: ListItem) {
+        itemList.value!!.add(item)
+        listSize++
+    }
+
+    fun removeItem(item: ListItem) {
+        itemList.value!!.remove(item)
+        listSize--
     }
 }

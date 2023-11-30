@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.labfourapp.HomeFragment"
+        android:label="@string/fragment_label_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/swipeFragment"
+        android:name="com.example.labfourapp.SwipeFragment"
+        android:label="@string/fragment_label_swipe"
+        tools:layout="@layout/fragment_swipe" />
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.labfourapp.ListFragment"
+        android:label="@string/fragment_label_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_itemViewFragment"
+            app:destination="@id/itemViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/listFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_to_homeFragment"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@id/homeFragment"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_to_swipeFragment"
+        app:destination="@id/swipeFragment"
+        app:popUpTo="@id/homeFragment"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_global_to_listFragment"
+        app:destination="@id/listFragment"
+        app:popUpTo="@id/homeFragment"
+        app:launchSingleTop="true" />
+    <fragment
+        android:id="@+id/itemViewFragment"
+        android:name="com.example.labfourapp.ItemViewFragment"
+        android:label="@string/fragment_label_item_view"
+        tools:layout="@layout/fragment_item_view">
+        <argument
+            android:name="editable"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

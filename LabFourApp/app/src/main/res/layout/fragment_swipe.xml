@@ -22,13 +22,11 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItemHomeEditor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/swipe_homeeditor_tab" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItemCustomization"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/swipe_customization_tab" />

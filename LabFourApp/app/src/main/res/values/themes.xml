@@ -5,5 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.LabFourApp" parent="Base.Theme.LabFourApp" />
+    <style name="Theme.LabFourApp" parent="Base.Theme.LabFourApp">
+    </style>
+    
+    <style name="ShapeAppearanceOverlay.App.CornerSize48" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">48dp</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
 </resources>
