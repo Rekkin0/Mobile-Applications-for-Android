@@ -29,5 +29,8 @@ class HomeFragment : Fragment() {
             binding.textViewAuthor.text =
                 bundle.getString("author", getString(R.string.home_author))
         }
+        setFragmentResultListener("customizationData") { _, bundle ->
+            binding.imageView.setImageResource(bundle.getInt("image", R.drawable.ic_doggo))
+        }
     }
 }

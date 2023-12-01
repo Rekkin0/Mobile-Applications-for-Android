@@ -8,24 +8,39 @@
     android:layout_height="match_parent"
     tools:context=".CustomizationFragment">
 
-    <Button
-        android:id="@+id/buttonFontSize"
+    <TextView
+        android:id="@+id/textViewImageLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:text="Font size"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="150dp"
+        android:text="@string/customization_label_image"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonFontStyle"
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Font style"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFontSize"
-        app:layout_constraintStart_toStartOf="@+id/buttonFontSize"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFontSize" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewImageLabel"
+        app:layout_constraintStart_toStartOf="@+id/textViewImageLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textViewImageLabel">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customization_label_dog" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customization_label_cat" />
+
+    </RadioGroup>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

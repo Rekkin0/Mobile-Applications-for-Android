@@ -34,7 +34,7 @@
         android:layout_margin="24dp"
         android:focusable="true"
         android:clickable="true"
-        android:text="@string/list_label_fab"
         app:icon="@android:drawable/ic_input_add"
         android:contentDescription="@string/list_label_fab" />
+    <!--android:text="@string/list_label_fab"-->
 </RelativeLayout>

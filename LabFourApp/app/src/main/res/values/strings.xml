@@ -28,6 +28,10 @@
     <string name="swipe_homeeditor_tab">Home Editor</string>
     <string name="swipe_customization_tab">Customization</string>
 
+    <string name="customization_label_image">Home image</string>
+    <string name="customization_label_dog">Dog</string>
+    <string name="customization_label_cat">Cat</string>
+
     <string name="list_label">Champions</string>
     <string name="list_label_fab">Add champion</string>
     <string name="list_dialog_title">Delete</string>
