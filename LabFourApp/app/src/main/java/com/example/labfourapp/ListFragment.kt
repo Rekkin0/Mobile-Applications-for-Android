@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +40,7 @@ class ListFragment : Fragment() {
 
         viewModel.itemList.observe(viewLifecycleOwner) { items ->
             val recyclerViewAdapter = RecyclerViewAdapter(items) { item ->
-                viewItem(item, false)
+                viewItem(item)
             }
             binding.recyclerView.adapter = recyclerViewAdapter
         }
@@ -49,14 +48,14 @@ class ListFragment : Fragment() {
         binding.floatingActionButton.setOnClickListener {
             val item = ListItem("New champion", "New title")
             viewModel.addItem(item)
-            viewItem(item, true)
+            viewItem(item)
         }
     }
 
-    private fun viewItem(item: ListItem, editable: Boolean) {
+    private fun viewItem(item: ListItem) {
         viewModel.item = item
         val action =
-            ListFragmentDirections.actionListFragmentToItemViewFragment(editable)
+            ListFragmentDirections.actionListFragmentToItemViewFragment()
         findNavController().navigate(action)
     }
 
@@ -92,6 +91,21 @@ class ListFragment : Fragment() {
                         it
                     )
                 }
+                when (item.rating) {
+                    in 0.0F..2.0F -> itemBinding.textViewRating.setBackgroundColor(
+                        resources.getColor(R.color.red)
+                    )
+                    in 2.5F..3.5F -> itemBinding.textViewRating.setBackgroundColor(
+                        resources.getColor(R.color.orange)
+                    )
+                    in 4.0F..4.5F -> itemBinding.textViewRating.setBackgroundColor(
+                        resources.getColor(R.color.green)
+                    )
+                    5.0F -> itemBinding.textViewRating.setBackgroundColor(
+                        resources.getColor(R.color.yellow)
+                    )
+                }
+                itemBinding.textViewRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {
                     onItemClick(item)

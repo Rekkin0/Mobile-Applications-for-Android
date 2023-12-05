@@ -10,9 +10,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_weight="0"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         app:srcCompat="@drawable/round_add_photo"
         android:contentDescription="@string/list_item_label_image" />
 
@@ -21,14 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="24dp"
             android:text="@string/placeholder"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -44,5 +46,14 @@
             android:textStyle="italic" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0"
+        android:textSize="18sp"
+        android:text="@string/list_item_rating_placeholder" />
 
 </LinearLayout>

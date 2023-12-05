@@ -40,7 +40,8 @@
     <string name="list_dialog_button_negative">No</string>
 
     <string name="list_item_label_image">Region</string>
-    
+    <string name="list_item_rating_placeholder">★</string>
+
     <string name="itemview_label_name">Name</string>
     <string name="itemview_hint_name">Type the name here</string>
 
@@ -57,5 +58,5 @@
     <string name="itemview_label_rating">Rating</string>
 
     <string name="itemview_button_edit">Edit</string>
-    <string name="itemview_button_save">Save</string>
+    <string name="itemedit_button_save">Save</string>
 </resources>

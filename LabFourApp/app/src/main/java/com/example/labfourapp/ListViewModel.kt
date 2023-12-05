@@ -12,8 +12,7 @@ data class ListItem(
 
 class ListViewModel : ViewModel() {
     val itemList = MutableLiveData<MutableList<ListItem>>()
-    var listSize = 0
-    lateinit var item: ListItem
+    var item: ListItem
 
     init {
         val items: MutableList<ListItem> = mutableListOf(
@@ -25,17 +24,14 @@ class ListViewModel : ViewModel() {
             ListItem("Swain", "The Noxian Grand General", 4F, 1),
         )
         itemList.value = items
-        listSize = items.size
         item = items[0]
     }
 
     fun addItem(item: ListItem) {
         itemList.value!!.add(item)
-        listSize++
     }
 
     fun removeItem(item: ListItem) {
         itemList.value!!.remove(item)
-        listSize--
     }
 }

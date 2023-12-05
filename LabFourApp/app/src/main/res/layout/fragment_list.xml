@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="24dp"
+        android:layout_margin="16dp"
         android:focusable="true"
         android:clickable="true"
         app:icon="@android:drawable/ic_input_add"
