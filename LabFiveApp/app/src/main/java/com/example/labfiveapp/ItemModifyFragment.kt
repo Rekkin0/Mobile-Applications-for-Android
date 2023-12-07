@@ -5,18 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.example.labfiveapp.R
-import com.example.labfiveapp.databinding.FragmentItemEditBinding
+import com.example.labfiveapp.databinding.FragmentItemModifyBinding
 
-class ItemEditFragment : Fragment() {
-    private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
-    private lateinit var binding: FragmentItemEditBinding
-    private lateinit var item: ListItem
+class ItemModifyFragment : Fragment() {
+    private lateinit var binding: FragmentItemModifyBinding
+    private lateinit var dataRepository: DataRepository
+    private lateinit var item: DBListItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        item = viewModel.item
+        dataRepository = DataRepository(requireContext())
     }
 
     override fun onCreateView(
@@ -24,13 +22,19 @@ class ItemEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentItemEditBinding.inflate(layoutInflater)
+        binding = FragmentItemModifyBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setData()
+        arguments?.let {
+            val itemId = it.getInt("item_id")
+            if (itemId != -1) {
+                item = dataRepository.getById(itemId)!!
+            }
+        }
+        displayData()
         binding.radioGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.radioButton1 -> binding.imageView.setImageResource(R.drawable.ic_noxus)
@@ -39,16 +43,21 @@ class ItemEditFragment : Fragment() {
             }
         }
         binding.buttonSave.setOnClickListener { _ ->
-            saveData()
+            if (!::item.isInitialized) {
+                item = createItem()
+                dataRepository.insert(item)
+            } else modifyItem()
+            parentFragmentManager.setFragmentResult("item_edited", Bundle.EMPTY)
             parentFragmentManager.popBackStack()
         }
     }
 
-    private fun setData() {
+    private fun displayData() {
+        if (!::item.isInitialized) return
         binding.editTextName.setText(item.name)
         binding.editTextTitle.setText(item.title)
         binding.ratingBar.rating = item.rating
-        when(item.region) {
+        when (item.region) {
             1 -> Pair(R.id.radioButton1, R.drawable.ic_noxus)
             2 -> Pair(R.id.radioButton2, R.drawable.ic_demacia)
             3 -> Pair(R.id.radioButton3, R.drawable.ic_shurima)
@@ -59,15 +68,23 @@ class ItemEditFragment : Fragment() {
         }
     }
 
-    private fun saveData() {
-        var name = binding.editTextName.text.toString()
-        if (name.isBlank()) name = "New champion"
-        item.name = name
+    private fun createItem(): DBListItem {
+        return DBListItem(
+            name = binding.editTextName.text.toString(),
+            title = binding.editTextTitle.text.toString(),
+            rating = binding.ratingBar.rating,
+            region = when (binding.radioGroup.checkedRadioButtonId) {
+                R.id.radioButton1 -> 1
+                R.id.radioButton2 -> 2
+                R.id.radioButton3 -> 3
+                else -> null
+            }
+        )
+    }
 
-        var title = binding.editTextTitle.text.toString()
-        if (title.isBlank()) title = "New title"
-        item.title = title
-
+    private fun modifyItem() {
+        item.name = binding.editTextName.text.toString()
+        item.title = binding.editTextTitle.text.toString()
         item.rating = binding.ratingBar.rating
         item.region = when (binding.radioGroup.checkedRadioButtonId) {
             R.id.radioButton1 -> 1
@@ -75,5 +92,6 @@ class ItemEditFragment : Fragment() {
             R.id.radioButton3 -> 3
             else -> null
         }
+        dataRepository.update(item)
     }
 }

@@ -12,6 +12,7 @@
     <string name="fragment_label_home">Home Fragment</string>
     <string name="fragment_label_list">List Fragment</string>
     <string name="fragment_label_item_view">Item View Fragment</string>
+    <string name="fragment_label_item_modify">Item Modify Fragment</string>
 
     <string name="navigation_drawer_label">Navigation Drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

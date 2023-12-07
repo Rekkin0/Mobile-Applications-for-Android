@@ -5,25 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.example.labfiveapp.R
 import com.example.labfiveapp.databinding.FragmentItemViewBinding
 
 class ItemViewFragment : Fragment() {
-    private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
     private lateinit var binding: FragmentItemViewBinding
-    private lateinit var item: ListItem
+    private lateinit var dataRepository: DataRepository
+    private lateinit var item: DBListItem
 
     override fun onResume() {
         super.onResume()
-        setData()
+        displayData()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        item = viewModel.item
+        dataRepository = DataRepository(requireContext())
     }
 
     override fun onCreateView(
@@ -38,11 +36,17 @@ class ItemViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            val itemId = it.getInt("item_id")
+            item = dataRepository.getById(itemId)!!
+        }
         disableInputs()
-        setData()
+        displayData()
         binding.buttonEdit.setOnClickListener {
+            val action =
+                ItemViewFragmentDirections.actionItemViewFragmentToItemModifyFragment(item.id)
             requireActivity().findNavController(R.id.fragmentContainerView)
-                .navigate(R.id.action_itemViewFragment_to_itemEditFragment)
+                .navigate(action)
         }
     }
 
@@ -53,7 +57,7 @@ class ItemViewFragment : Fragment() {
         binding.radioButton3.isEnabled = false
     }
 
-    private fun setData() {
+    private fun displayData() {
         binding.textViewName.text = item.name
         binding.textViewTitle.text = item.title
         binding.ratingBar.rating = item.rating

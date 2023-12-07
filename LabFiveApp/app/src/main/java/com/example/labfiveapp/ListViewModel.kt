@@ -3,6 +3,8 @@ package com.example.labfiveapp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+//DOES NOTHING ATM
+
 data class ListItem(
     var name: String = "",
     var title: String = "",

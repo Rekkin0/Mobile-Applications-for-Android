@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,12 +16,18 @@ class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
     private lateinit var dataRepository: DataRepository
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
-    private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataRepository = DataRepository(requireContext())
         recyclerViewAdapter = RecyclerViewAdapter(dataRepository.getAll()!!)
+
+        parentFragmentManager.setFragmentResultListener(
+            "item_edited",
+            this
+        ) { _, _ ->
+            recyclerViewAdapter.updateList(dataRepository.getAll()!!)
+        }
     }
 
     override fun onCreateView(
@@ -47,30 +52,22 @@ class ListFragment : Fragment() {
         )
         binding.recyclerView.adapter = recyclerViewAdapter
 
-        viewModel.itemList.observe(viewLifecycleOwner) { items ->
-            val recyclerViewAdapter = RecyclerViewAdapter(items) { item ->
-                viewModel.item = item
-                val action =
-                    ListFragmentDirections.actionListFragmentToItemViewFragment()
-                findNavController().navigate(action)
-            }
-            binding.recyclerView.adapter = recyclerViewAdapter
-        }
-
         binding.floatingActionButton.setOnClickListener {
-            val item = ListItem("", "")
-            viewModel.addItem(item)
-            viewModel.item = item
             val action =
-                ListFragmentDirections.actionListFragmentToItemEditFragment()
+                ListFragmentDirections.actionListFragmentToItemModifyFragment(-1)
             findNavController().navigate(action)
         }
     }
 
     private inner class RecyclerViewAdapter(
-        private val itemList: MutableList<DBListItem>
+        private var itemList: MutableList<DBListItem>
     ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
         private lateinit var itemBinding: ListItemBinding
+
+        fun updateList(newList: MutableList<DBListItem>) {
+            itemList = newList
+            notifyDataSetChanged()
+        }
 
         override fun getItemCount(): Int = itemList.size
 
@@ -93,11 +90,7 @@ class ListFragment : Fragment() {
                     2 -> R.drawable.ic_demacia
                     3 -> R.drawable.ic_shurima
                     else -> null
-                }?.let {
-                    itemBinding.imageView.setImageResource(
-                        it
-                    )
-                }
+                }?.let { itemBinding.imageView.setImageResource(it) }
                 when (item.rating) {
                     in 0.0F..2.0F -> itemBinding.textViewRating.setBackgroundColor(
                         resources.getColor(R.color.red)
@@ -115,9 +108,8 @@ class ListFragment : Fragment() {
                 itemBinding.textViewRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {
-                    viewModel.item = item
                     val action =
-                        ListFragmentDirections.actionListFragmentToItemViewFragment()
+                        ListFragmentDirections.actionListFragmentToItemViewFragment(item.id)
                     findNavController().navigate(action)
                 }
 
@@ -129,8 +121,9 @@ class ListFragment : Fragment() {
                         ).setMessage(getString(R.string.list_dialog_message))
                         .setPositiveButton(getString(R.string.list_dialog_button_positive))
                         { _, _ ->
-                            viewModel.removeItem(item)
-                            refreshFragment()
+                            if (dataRepository.delete(item)) {
+                                updateList(dataRepository.getAll()!!)
+                            }
                         }.setNegativeButton(getString(R.string.list_dialog_button_negative))
                         { dialog, _ ->
                             dialog.cancel()
@@ -141,10 +134,5 @@ class ListFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun refreshFragment() {
-        parentFragmentManager.beginTransaction().detach(this).commit()
-        parentFragmentManager.beginTransaction().attach(this).commit()
     }
 }

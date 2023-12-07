@@ -29,8 +29,8 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popUpTo="@id/listFragment" />
         <action
-            android:id="@+id/action_listFragment_to_itemEditFragment"
-            app:destination="@id/itemEditFragment"
+            android:id="@+id/action_listFragment_to_itemModifyFragment"
+            app:destination="@id/itemModifyFragment"
             app:popUpTo="@id/listFragment"
             app:launchSingleTop="true" />
     </fragment>
@@ -55,14 +55,21 @@
         android:label="@string/fragment_label_item_view"
         tools:layout="@layout/fragment_item_view">
         <action
-            android:id="@+id/action_itemViewFragment_to_itemEditFragment"
-            app:destination="@id/itemEditFragment"
+            android:id="@+id/action_itemViewFragment_to_itemModifyFragment"
+            app:destination="@id/itemModifyFragment"
             app:popUpTo="@id/itemViewFragment"
             app:launchSingleTop="true" />
+        <argument
+            android:name="item_id"
+            app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/itemEditFragment"
-        android:name="com.example.labfiveapp.ItemEditFragment"
-        android:label="Item Edit Fragment"
-        tools:layout="@layout/fragment_item_edit" />
+        android:id="@+id/itemModifyFragment"
+        android:name="com.example.labfiveapp.ItemModifyFragment"
+        android:label="@string/fragment_label_item_modify"
+        tools:layout="@layout/fragment_item_modify" >
+        <argument
+            android:name="item_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
