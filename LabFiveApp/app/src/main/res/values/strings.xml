@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">LabFourApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder">Placeholder</string>
+
+    <string name="navigation_label_swipe">Swipe</string>
+    <string name="navigation_label_home">Home</string>
+    <string name="navigation_label_list">List</string>
+
+    <string name="fragment_label_swipe">Swipe Fragment</string>
+    <string name="fragment_label_home">Home Fragment</string>
+    <string name="fragment_label_list">List Fragment</string>
+    <string name="fragment_label_item_view">Item View Fragment</string>
+
+    <string name="navigation_drawer_label">Navigation Drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="home_label_greetings">Greetings</string>
+    <string name="home_hint_greetings">Type your greetings here</string>
+    <string name="home_greetings">Hello!</string>
+
+    <string name="home_label_author">Author</string>
+    <string name="home_hint_author">Type your name here</string>
+    <string name="home_author">Michał Korzeń</string>
+
+    <string name="swipe_homeeditor_tab">Home Editor</string>
+    <string name="swipe_customization_tab">Customization</string>
+
+    <string name="customization_label_image">Home image</string>
+    <string name="customization_label_dog">Dog</string>
+    <string name="customization_label_cat">Cat</string>
+
+    <string name="list_label">Champions</string>
+    <string name="list_label_fab">Add champion</string>
+    <string name="list_dialog_title">Delete</string>
+    <string name="list_dialog_message">Are you sure you want to delete this champion?</string>
+    <string name="list_dialog_button_positive">Yes</string>
+    <string name="list_dialog_button_negative">No</string>
+
+    <string name="list_item_label_image">Region</string>
+    <string name="list_item_rating_placeholder">★</string>
+
+    <string name="itemview_label_name">Name</string>
+    <string name="itemview_hint_name">Type the name here</string>
+
+    <string name="itemview_label_title">Title</string>
+    <string name="itemview_hint_title">Type the title here</string>
+
+    <string name="itemview_label_image">Region</string>
+
+    <string name="itemview_label_category">Category</string>
+    <string name="itemview_label_radio_1">Noxus</string>
+    <string name="itemview_label_radio_2">Demacia</string>
+    <string name="itemview_label_radio_3">Shurima</string>
+
+    <string name="itemview_label_rating">Rating</string>
+
+    <string name="itemview_button_edit">Edit</string>
+    <string name="itemedit_button_save">Save</string>
+</resources>
