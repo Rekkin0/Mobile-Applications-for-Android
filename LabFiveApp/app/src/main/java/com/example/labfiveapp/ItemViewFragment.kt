@@ -1,22 +1,24 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.labfourapp.databinding.FragmentItemViewBinding
+import com.example.labfiveapp.R
+import com.example.labfiveapp.databinding.FragmentItemViewBinding
 
 class ItemViewFragment : Fragment() {
     private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
     private lateinit var binding: FragmentItemViewBinding
     private lateinit var item: ListItem
+
+    override fun onResume() {
+        super.onResume()
+        setData()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

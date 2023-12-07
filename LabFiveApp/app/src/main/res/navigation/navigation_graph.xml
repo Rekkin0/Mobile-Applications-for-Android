@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.labfourapp.HomeFragment"
+        android:name="com.example.labfiveapp.HomeFragment"
         android:label="@string/fragment_label_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/swipeFragment"
-        android:name="com.example.labfourapp.SwipeFragment"
+        android:name="com.example.labfiveapp.SwipeFragment"
         android:label="@string/fragment_label_swipe"
         tools:layout="@layout/fragment_swipe" />
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.labfourapp.ListFragment"
+        android:name="com.example.labfiveapp.ListFragment"
         android:label="@string/fragment_label_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -28,6 +28,11 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popUpTo="@id/listFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_itemEditFragment"
+            app:destination="@id/itemEditFragment"
+            app:popUpTo="@id/listFragment"
+            app:launchSingleTop="true" />
     </fragment>
     <action
         android:id="@+id/action_global_to_homeFragment"
@@ -46,7 +51,7 @@
         app:launchSingleTop="true" />
     <fragment
         android:id="@+id/itemViewFragment"
-        android:name="com.example.labfourapp.ItemViewFragment"
+        android:name="com.example.labfiveapp.ItemViewFragment"
         android:label="@string/fragment_label_item_view"
         tools:layout="@layout/fragment_item_view">
         <action
@@ -57,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemEditFragment"
-        android:name="com.example.labfourapp.ItemEditFragment"
+        android:name="com.example.labfiveapp.ItemEditFragment"
         android:label="Item Edit Fragment"
         tools:layout="@layout/fragment_item_edit" />
 </navigation>

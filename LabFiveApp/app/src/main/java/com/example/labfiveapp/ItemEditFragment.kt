@@ -1,14 +1,13 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
-import com.example.labfourapp.databinding.FragmentItemEditBinding
+import com.example.labfiveapp.R
+import com.example.labfiveapp.databinding.FragmentItemEditBinding
 
 class ItemEditFragment : Fragment() {
     private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
@@ -61,8 +60,14 @@ class ItemEditFragment : Fragment() {
     }
 
     private fun saveData() {
-        item.name = binding.editTextName.text.toString()
-        item.title = binding.editTextTitle.text.toString()
+        var name = binding.editTextName.text.toString()
+        if (name.isBlank()) name = "New champion"
+        item.name = name
+
+        var title = binding.editTextTitle.text.toString()
+        if (title.isBlank()) title = "New title"
+        item.title = title
+
         item.rating = binding.ratingBar.rating
         item.region = when (binding.radioGroup.checkedRadioButtonId) {
             R.id.radioButton1 -> 1

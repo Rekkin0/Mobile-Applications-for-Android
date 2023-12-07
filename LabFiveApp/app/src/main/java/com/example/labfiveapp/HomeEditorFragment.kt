@@ -1,4 +1,4 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResult
-import com.example.labfourapp.databinding.FragmentHomeEditorBinding
+import com.example.labfiveapp.databinding.FragmentHomeEditorBinding
 
 class HomeEditorFragment : Fragment() {
     private lateinit var binding: FragmentHomeEditorBinding

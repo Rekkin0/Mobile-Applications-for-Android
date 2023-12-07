@@ -1,4 +1,4 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,11 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.labfourapp.databinding.ActivityMainBinding
+import com.example.labfiveapp.R
+import com.example.labfiveapp.databinding.ActivityMainBinding
 import com.google.android.material.color.DynamicColors
-import com.google.android.material.color.MaterialColors
-import com.google.android.material.elevation.SurfaceColors
-import com.google.android.material.shape.MaterialShapeDrawable
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

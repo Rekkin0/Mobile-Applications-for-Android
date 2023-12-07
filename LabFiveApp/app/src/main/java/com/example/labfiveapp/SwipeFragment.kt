@@ -1,4 +1,4 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.example.labfourapp.databinding.FragmentSwipeBinding
-import com.google.android.material.tabs.TabLayout
+import com.example.labfiveapp.R
+import com.example.labfiveapp.databinding.FragmentSwipeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SwipeFragment : Fragment() {

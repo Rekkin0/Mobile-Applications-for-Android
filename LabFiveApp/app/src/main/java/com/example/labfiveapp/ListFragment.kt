@@ -1,4 +1,4 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,13 +9,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.labfourapp.databinding.FragmentListBinding
-import com.example.labfourapp.databinding.ListItemBinding
+import com.example.labfiveapp.databinding.FragmentListBinding
+import com.example.labfiveapp.databinding.ListItemBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
+    private lateinit var dataRepository: DataRepository
+    private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private val viewModel: ListViewModel by viewModels({ requireParentFragment() })
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        dataRepository = DataRepository(requireContext())
+        recyclerViewAdapter = RecyclerViewAdapter(dataRepository.getAll()!!)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,31 +45,30 @@ class ListFragment : Fragment() {
                 androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
             )
         )
+        binding.recyclerView.adapter = recyclerViewAdapter
 
         viewModel.itemList.observe(viewLifecycleOwner) { items ->
             val recyclerViewAdapter = RecyclerViewAdapter(items) { item ->
-                viewItem(item)
+                viewModel.item = item
+                val action =
+                    ListFragmentDirections.actionListFragmentToItemViewFragment()
+                findNavController().navigate(action)
             }
             binding.recyclerView.adapter = recyclerViewAdapter
         }
 
         binding.floatingActionButton.setOnClickListener {
-            val item = ListItem("New champion", "New title")
+            val item = ListItem("", "")
             viewModel.addItem(item)
-            viewItem(item)
+            viewModel.item = item
+            val action =
+                ListFragmentDirections.actionListFragmentToItemEditFragment()
+            findNavController().navigate(action)
         }
     }
 
-    private fun viewItem(item: ListItem) {
-        viewModel.item = item
-        val action =
-            ListFragmentDirections.actionListFragmentToItemViewFragment()
-        findNavController().navigate(action)
-    }
-
     private inner class RecyclerViewAdapter(
-        private val itemList: List<ListItem>,
-        private val onItemClick: (ListItem) -> Unit
+        private val itemList: MutableList<DBListItem>
     ) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
         private lateinit var itemBinding: ListItemBinding
 
@@ -78,7 +85,7 @@ class ListFragment : Fragment() {
         }
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            fun bind(item: ListItem) {
+            fun bind(item: DBListItem) {
                 itemBinding.textViewName.text = item.name
                 itemBinding.textViewTitle.text = item.title
                 when (item.region) {
@@ -108,7 +115,10 @@ class ListFragment : Fragment() {
                 itemBinding.textViewRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {
-                    onItemClick(item)
+                    viewModel.item = item
+                    val action =
+                        ListFragmentDirections.actionListFragmentToItemViewFragment()
+                    findNavController().navigate(action)
                 }
 
                 itemView.setOnLongClickListener {

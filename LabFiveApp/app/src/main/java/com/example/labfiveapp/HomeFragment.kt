@@ -1,4 +1,4 @@
-package com.example.labfourapp
+package com.example.labfiveapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
-import com.example.labfourapp.databinding.FragmentHomeBinding
+import com.example.labfiveapp.R
+import com.example.labfiveapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
