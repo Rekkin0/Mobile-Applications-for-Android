@@ -42,7 +42,7 @@ class ItemViewFragment : Fragment() {
         }
         disableInputs()
         displayData()
-        binding.buttonEdit.setOnClickListener {
+        binding.buttonModify.setOnClickListener {
             val action =
                 ItemViewFragmentDirections.actionItemViewFragmentToItemModifyFragment(item.id)
             requireActivity().findNavController(R.id.fragmentContainerView)

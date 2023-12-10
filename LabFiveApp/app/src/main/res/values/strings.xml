@@ -28,6 +28,8 @@
 
     <string name="swipe_homeeditor_tab">Home Editor</string>
     <string name="swipe_customization_tab">Customization</string>
+    <string name="swipe_image_dog_tab">Dog</string>
+    <string name="swipe_image_cat_tab">Cat</string>
 
     <string name="customization_label_image">Home image</string>
     <string name="customization_label_dog">Dog</string>
@@ -58,6 +60,6 @@
 
     <string name="itemview_label_rating">Rating</string>
 
-    <string name="itemview_button_edit">Edit</string>
+    <string name="itemview_button_modify">Modify</string>
     <string name="itemedit_button_save">Save</string>
 </resources>

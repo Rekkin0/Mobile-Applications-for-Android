@@ -24,12 +24,12 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/swipe_homeeditor_tab" />
+                android:text="@string/swipe_image_dog_tab" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/swipe_customization_tab" />
+                android:text="@string/swipe_image_cat_tab" />
 
         </com.google.android.material.tabs.TabLayout>
 

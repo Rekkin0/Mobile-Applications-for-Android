@@ -105,7 +105,6 @@ class ListFragment : Fragment() {
                         resources.getColor(R.color.yellow)
                     )
                 }
-                itemBinding.textViewRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {
                     val action =
@@ -123,6 +122,7 @@ class ListFragment : Fragment() {
                         { _, _ ->
                             if (dataRepository.delete(item)) {
                                 updateList(dataRepository.getAll()!!)
+                                refreshFragment()
                             }
                         }.setNegativeButton(getString(R.string.list_dialog_button_negative))
                         { dialog, _ ->
@@ -134,5 +134,10 @@ class ListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun refreshFragment() {
+        parentFragmentManager.beginTransaction().detach(this).commit()
+        parentFragmentManager.beginTransaction().attach(this).commit()
     }
 }

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.labfiveapp.R
 import com.example.labfiveapp.databinding.FragmentSwipeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -32,9 +31,9 @@ class SwipeFragment : Fragment() {
         binding.viewPager.adapter = ViewPagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> getString(R.string.swipe_homeeditor_tab)
-                1 -> getString(R.string.swipe_customization_tab)
-                else -> getString(R.string.swipe_homeeditor_tab)
+                0 -> getString(R.string.swipe_image_dog_tab)
+                1 -> getString(R.string.swipe_image_cat_tab)
+                else -> getString(R.string.swipe_image_dog_tab)
             }
         }.attach()
     }
@@ -43,11 +42,20 @@ class SwipeFragment : Fragment() {
         override fun getItemCount(): Int = PAGE_COUNT
 
         override fun createFragment(position: Int): Fragment {
-            return when (position) {
-                0 -> HomeEditorFragment.newInstance()
-                1 -> CustomizationFragment.newInstance()
-                else -> HomeEditorFragment.newInstance()
-            }
+            return ImageFragment.newInstance(position)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val bundle = Bundle()
+        bundle.putInt("image",
+            when (binding.viewPager.currentItem) {
+                0 -> R.drawable.ic_doggo
+                1 -> R.drawable.ic_catto
+                else -> R.drawable.ic_doggo
+            }
+        )
+        parentFragmentManager.setFragmentResult("swipeData", bundle)
     }
 }

@@ -5,14 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.labfiveapp.databinding.FragmentImageDogBinding
+import com.example.labfiveapp.databinding.FragmentImageBinding
 
-class ImageDogFragment : Fragment() {
-    private lateinit var binding: FragmentImageDogBinding
+class ImageFragment : Fragment() {
+    private lateinit var binding: FragmentImageBinding
     private var position: Int? = null
 
     companion object {
-        fun newInstance(position: Int) = ImageDogFragment().apply {
+        fun newInstance(position: Int) = ImageFragment().apply {
             arguments = Bundle().apply {
                 putInt("position", position)
             }
@@ -32,7 +32,7 @@ class ImageDogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentImageDogBinding.inflate(layoutInflater)
+        binding = FragmentImageBinding.inflate(layoutInflater)
         return binding.root
     }
 
