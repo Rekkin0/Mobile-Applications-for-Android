@@ -5,17 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.labfiveapp.databinding.FragmentItemModifyBinding
 
 class ItemModifyFragment : Fragment() {
     private lateinit var binding: FragmentItemModifyBinding
-    private lateinit var dataRepository: DataRepository
     private lateinit var item: DBListItem
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dataRepository = DataRepository(requireContext())
-    }
+    private val listViewModel: ListViewModel by activityViewModels { ListViewModel.Factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +27,7 @@ class ItemModifyFragment : Fragment() {
         arguments?.let {
             val itemId = it.getInt("item_id")
             if (itemId != -1) {
-                item = dataRepository.getById(itemId)!!
+                item = listViewModel.getItemById(itemId)
             }
         }
         displayData()
@@ -45,7 +41,7 @@ class ItemModifyFragment : Fragment() {
         binding.buttonSave.setOnClickListener { _ ->
             if (!::item.isInitialized) {
                 item = createItem()
-                dataRepository.insert(item)
+                listViewModel.insertItem(item)
             } else modifyItem()
             parentFragmentManager.setFragmentResult("item_edited", Bundle.EMPTY)
             parentFragmentManager.popBackStack()
@@ -92,6 +88,6 @@ class ItemModifyFragment : Fragment() {
             R.id.radioButton3 -> 3
             else -> null
         }
-        dataRepository.update(item)
+        listViewModel.updateItem(item)
     }
 }

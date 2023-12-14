@@ -42,4 +42,17 @@ class DBListItem {
         Random.nextInt(0, 11) / 2.0F,
         Random.nextInt(1, 4)
     )
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is DBListItem) {
+            return false
+        }
+        return (
+            this.id == other.id
+            && this.name == other.name
+            && this.title == other.title
+            && this.rating == other.rating
+            && this.region == other.region
+        )
+    }
 }

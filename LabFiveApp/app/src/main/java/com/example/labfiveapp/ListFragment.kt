@@ -53,9 +53,9 @@ class ListFragment : Fragment() {
         binding.recyclerView.adapter = recyclerViewAdapter
 
         binding.floatingActionButton.setOnClickListener {
-            val action =
+            val direction =
                 ListFragmentDirections.actionListFragmentToItemModifyFragment(-1)
-            findNavController().navigate(action)
+            findNavController().navigate(direction)
         }
     }
 
@@ -107,9 +107,9 @@ class ListFragment : Fragment() {
                 }
 
                 itemView.setOnClickListener {
-                    val action =
+                    val direction =
                         ListFragmentDirections.actionListFragmentToItemViewFragment(item.id)
-                    findNavController().navigate(action)
+                    findNavController().navigate(direction)
                 }
 
                 itemView.setOnLongClickListener {

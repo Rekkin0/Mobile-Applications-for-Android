@@ -5,13 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.labfiveapp.databinding.FragmentItemViewBinding
 
 class ItemViewFragment : Fragment() {
     private lateinit var binding: FragmentItemViewBinding
-    private lateinit var dataRepository: DataRepository
     private lateinit var item: DBListItem
+    private val listViewModel: ListViewModel by activityViewModels { ListViewModel.Factory }
 
     override fun onResume() {
         super.onResume()
@@ -21,7 +22,6 @@ class ItemViewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        dataRepository = DataRepository(requireContext())
     }
 
     override fun onCreateView(
@@ -38,15 +38,15 @@ class ItemViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val itemId = it.getInt("item_id")
-            item = dataRepository.getById(itemId)!!
+            item = listViewModel.getItemById(itemId)
         }
         disableInputs()
         displayData()
         binding.buttonModify.setOnClickListener {
-            val action =
+            val direction =
                 ItemViewFragmentDirections.actionItemViewFragmentToItemModifyFragment(item.id)
             requireActivity().findNavController(R.id.fragmentContainerView)
-                .navigate(action)
+                .navigate(direction)
         }
     }
 

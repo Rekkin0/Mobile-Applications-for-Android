@@ -72,4 +72,28 @@
             android:name="item_id"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/listLiveFragment"
+        android:name="com.example.labfiveapp.ListLiveFragment"
+        android:label="@string/fragment_label_list"
+        tools:layout="@layout/fragment_list_live" >
+        <action
+            android:id="@+id/action_listLiveFragment_to_itemViewFragment"
+            app:destination="@id/itemViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/listFragment" />
+        <action
+            android:id="@+id/action_listLiveFragment_to_itemModifyFragment"
+            app:destination="@id/itemModifyFragment"
+            app:popUpTo="@id/listFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_to_listLiveFragment"
+        app:destination="@id/listLiveFragment"
+        app:popUpTo="@id/homeFragment"
+        app:launchSingleTop="true" />
 </navigation>

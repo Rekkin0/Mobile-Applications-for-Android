@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.swipeFragment,
                 R.id.homeFragment,
-                R.id.listFragment
+                R.id.listLiveFragment
             ), binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

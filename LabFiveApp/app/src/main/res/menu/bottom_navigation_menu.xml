@@ -13,7 +13,7 @@
         android:icon="@drawable/round_home"
         android:title="@string/navigation_label_home" />
     <item
-        android:id="@+id/listFragment"
+        android:id="@+id/listLiveFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/round_list"
