@@ -20,13 +20,13 @@ class ListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataRepository = DataRepository(requireContext())
-        recyclerViewAdapter = RecyclerViewAdapter(dataRepository.getAll()!!)
+        //recyclerViewAdapter = RecyclerViewAdapter(dataRepository.getAll()!!)
 
         parentFragmentManager.setFragmentResultListener(
             "item_edited",
             this
         ) { _, _ ->
-            recyclerViewAdapter.updateList(dataRepository.getAll()!!)
+            //recyclerViewAdapter.updateList(dataRepository.getAll()!!)
         }
     }
 
@@ -121,7 +121,7 @@ class ListFragment : Fragment() {
                         .setPositiveButton(getString(R.string.list_dialog_button_positive))
                         { _, _ ->
                             if (dataRepository.delete(item)) {
-                                updateList(dataRepository.getAll()!!)
+                                //updateList(dataRepository.getAll()!!)
                                 refreshFragment()
                             }
                         }.setNegativeButton(getString(R.string.list_dialog_button_negative))

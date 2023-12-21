@@ -41,7 +41,8 @@ class ItemModifyFragment : Fragment() {
         binding.buttonSave.setOnClickListener { _ ->
             if (!::item.isInitialized) {
                 item = createItem()
-                listViewModel.insertItem(item)
+                listViewModel.insertItemFlow(item)
+                //listViewModel.insertItem(item)
             } else modifyItem()
             parentFragmentManager.setFragmentResult("item_edited", Bundle.EMPTY)
             parentFragmentManager.popBackStack()
@@ -88,6 +89,7 @@ class ItemModifyFragment : Fragment() {
             R.id.radioButton3 -> 3
             else -> null
         }
-        listViewModel.updateItem(item)
+        listViewModel.updateItemFlow(item)
+        //listViewModel.updateItem(item)
     }
 }

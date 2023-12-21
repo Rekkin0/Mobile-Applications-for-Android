@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.labfiveapp.databinding.FragmentListLiveBinding
 import com.example.labfiveapp.databinding.ListItemBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
 
 class ListLiveFragment : Fragment() {
     private lateinit var binding: FragmentListLiveBinding
@@ -35,9 +38,8 @@ class ListLiveFragment : Fragment() {
                     ).setMessage(getString(R.string.list_dialog_message))
                     .setPositiveButton(getString(R.string.list_dialog_button_positive))
                     { _, _ ->
-                        if (listViewModel.deleteItem(item)) {
-                            myListAdapter.updateList(listViewModel.getAllItems())
-                        }
+                        listViewModel.deleteItemFlow(item)
+                        //listViewModel.deleteItem(item))
                     }.setNegativeButton(getString(R.string.list_dialog_button_negative))
                     { dialog, _ ->
                         dialog.cancel()
@@ -52,14 +54,14 @@ class ListLiveFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         myListAdapter = MyListAdapter(onItemAction)
-        myListAdapter.updateList(listViewModel.getAllItems())
+        /*myListAdapter.updateList(listViewModel.getAllItems())
 
         parentFragmentManager.setFragmentResultListener(
             "item_edited",
             this
         ) { _, _ ->
             myListAdapter.updateList(listViewModel.getAllItems())
-        }
+        }*/
     }
 
     override fun onCreateView(
@@ -89,6 +91,16 @@ class ListLiveFragment : Fragment() {
                 ListLiveFragmentDirections.actionListLiveFragmentToItemModifyFragment(-1)
             findNavController().navigate(direction)
         }
+
+        /*listViewModel.getAllItemsLive().observe(viewLifecycleOwner) {
+            myListAdapter.updateList(it)
+        }*/
+
+        lifecycle.coroutineScope.launch {
+            listViewModel.getAllItemsFlow().collect {
+                myListAdapter.updateList(it)
+            }
+        }
     }
 
     val diffCallback = object: DiffUtil.ItemCallback<DBListItem>() {
@@ -109,14 +121,11 @@ class ListLiveFragment : Fragment() {
 
     private inner class MyListAdapter(
         private val onItemAction: (DBListItem, Int) -> Any
-    ): ListAdapter<
-        DBListItem,
-        MyListAdapter.ViewHolder
-    >(diffCallback) {
+    ): ListAdapter<DBListItem, MyListAdapter.ViewHolder>(diffCallback) {
         private lateinit var itemBinding: ListItemBinding
         private lateinit var holder: ViewHolder
 
-        fun updateList(newList: MutableList<DBListItem>) {
+        fun updateList(newList: List<DBListItem>) {
             submitList(newList)
         }
 
@@ -127,18 +136,19 @@ class ListLiveFragment : Fragment() {
             itemBinding =
                 ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             holder = ViewHolder(itemBinding.root)
-            holder.itemView.setOnClickListener {
-                onItemAction(getItem(holder.adapterPosition), 1)
-            }
-            holder.itemView.setOnLongClickListener {
-                onItemAction(getItem(holder.adapterPosition), 2)
-                true
-            }
             return holder
         }
 
         override fun onBindViewHolder(holder: MyListAdapter.ViewHolder, position: Int) {
+            val item = getItem(position)
             holder.bind(getItem(position))
+            holder.itemView.setOnClickListener {
+                onItemAction(item, 1)
+            }
+            holder.itemView.setOnLongClickListener {
+                onItemAction(item, 2)
+                true
+            }
         }
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

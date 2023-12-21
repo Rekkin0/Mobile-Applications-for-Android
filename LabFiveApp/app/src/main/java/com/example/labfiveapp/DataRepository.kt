@@ -1,6 +1,8 @@
 package com.example.labfiveapp
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 
 class DataRepository(context: Context) {
     //private var itemList: MutableList<DBListItem>? = null
@@ -33,20 +35,40 @@ class DataRepository(context: Context) {
         return dbDao.getById(id)
     }
 
-    fun getAll(): MutableList<DBListItem>? {
+    fun getAll(): List<DBListItem> {
         return dbDao.getAll()
+    }
+
+    fun getAllLive(): LiveData<List<DBListItem>> {
+        return dbDao.getAllLive()
+    }
+
+    fun getAllFlow(): Flow<List<DBListItem>> {
+        return dbDao.getAllFlow()
     }
 
     fun insert(item: DBListItem): Boolean {
         return dbDao.insert(item) >= 0
     }
 
+    suspend fun insertFlow(item: DBListItem): Boolean {
+        return dbDao.insertFlow(item) >= 0
+    }
+
     fun update(item: DBListItem): Boolean {
         return dbDao.update(item) > 0
     }
 
+    suspend fun updateFlow(item: DBListItem): Boolean {
+        return dbDao.updateFlow(item) > 0
+    }
+
     fun delete(item: DBListItem): Boolean {
         return dbDao.delete(item) > 0
+    }
+
+    suspend fun deleteFlow(item: DBListItem): Boolean {
+        return dbDao.deleteFlow(item) > 0
     }
 
     fun deleteAll() {
